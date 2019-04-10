@@ -1,0 +1,6 @@
+en:
+  attributes:
+    role_list:
+      user: User
+      admin: Admin
+      disabled: Disabled

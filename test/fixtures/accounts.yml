@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+michael:
+  first_name:      Michael
+  last_name:       Bester
+  email:           michael@kimili.com
+  username:        bester
+  type:            User
+  role:            :admin
+  password_digest: <%= Account.digest('password') %>
+  activated:       true
+  activated_at:    <%= Time.current.to_datetime %>
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+hugh:
+  first_name:      Hugh
+  last_name:       Jass
+  email:           hugh@jass.com
+  username:        rumpus
+  type:            User
+  role:            :user
+  password_digest: <%= Account.digest('password') %>
+  activated:       true
+  activated_at:    <%= Time.current.to_datetime %>
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>

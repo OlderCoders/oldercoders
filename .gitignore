@@ -17,6 +17,10 @@
 /public/assets
 .byebug_history
 
+# We don't need test coverage checked in
+coverage
+erd.pdf
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 

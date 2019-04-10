@@ -11,3 +11,37 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionDispatch::IntegrationTest
+  def teardown
+    log_out
+  end
+
+  # Log in as a particular user.
+  def log_in_as(user, *args)
+    options = args.extract_options!
+    password = options[:password] || 'password'
+    remember = options[:remember] || '1'
+
+    post login_path, params: {
+      session: {
+        email: user.email,
+        password: password,
+        remember: remember
+      }
+    }
+  end
+
+  def log_out
+    get logout_path
+  end
+end
+
+# Sampled from http://approache.com/blog/testing-rails-across-time-zones/
+module TimeZoneHelper
+  def self.random_time_zone
+    offsets = ActiveSupport::TimeZone.all.group_by(&:formatted_offset)
+    zones = offsets[offsets.keys.sample]
+    zones.sample.name
+  end
+end
