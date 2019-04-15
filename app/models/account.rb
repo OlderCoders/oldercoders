@@ -11,6 +11,8 @@ class Account < ApplicationRecord
   }
   translate_enum :role
 
+  has_person_name
+
   before_save          :sanitize_inputs
   before_save          :clean_username
   before_validation    :clean_email
