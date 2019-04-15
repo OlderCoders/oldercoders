@@ -90,6 +90,15 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
+  test "username validation should reject reserved words" do
+    # it should only accept letter, numbers and underscores
+    invalid_username = ReservedWords.all.sample
+    @accounts.each do |account|
+      account.username = invalid_username
+      assert_not account.valid?, "#{invalid_username.inspect} should be an reserved username"
+    end
+  end
+
   test "username should be unique" do
     @accounts.each do |account|
       duplicate_account = account.dup

@@ -34,5 +34,19 @@ module OlderCoders
       g.javascripts     false
       g.channel         assets: false
     end
+
+    # After-initialize checker to add routes to reserved words
+    config.after_initialize do
+      Rails.application.reload_routes!
+      top_routes = []
+      Rails.application.routes.routes.each do |route|
+        route = route.path.spec.to_s
+        skip if route.starts_with?("/:")
+        route = route.split("/")[1]
+        route = route.split("(")[0] if route&.include?("(")
+        top_routes << route
+      end
+      ReservedWords.all = [ReservedWords::BASE_WORDS + top_routes].flatten.compact.uniq
+    end
   end
 end

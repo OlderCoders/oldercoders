@@ -32,7 +32,8 @@ class Account < ApplicationRecord
             allow_nil: true,
             length: { maximum: 100 },
             uniqueness: { case_sensitive: false },
-            format: { with: VALID_USERNAME }
+            format: { with: VALID_USERNAME },
+            exclusion: { in: ReservedWords.all, message: "username is reserved" }
 
   validates :new_email,
             length: { maximum: 255 },
