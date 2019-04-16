@@ -4,3 +4,6 @@ en:
       user: User
       admin: Admin
       disabled: Disabled
+
+  errors:
+    not_available: is not available

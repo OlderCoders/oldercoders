@@ -33,7 +33,7 @@ class Account < ApplicationRecord
             length: { maximum: 100 },
             uniqueness: { case_sensitive: false },
             format: { with: VALID_USERNAME },
-            exclusion: { in: ReservedWords.all, message: "username is reserved" }
+            not_reserved_word: { field: :username }
 
   validates :new_email,
             length: { maximum: 255 },
@@ -84,12 +84,5 @@ class Account < ApplicationRecord
       self.email_confirmation_token = new_token
       update email_confirmation_digest: digest(email_confirmation_token)
     end
-
-    # def move_friendly_id_error_to_username
-    #   return if errors[:friendly_id].blank?
-
-    #   errors.delete(:friendly_id)
-    #   errors.add :username, I18n.t('global.not_available')
-    # end
 
 end

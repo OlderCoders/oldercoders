@@ -226,9 +226,13 @@ class ReservedWords
     rimjob
     cunt
     cock
+    cocksuck
+    cocksucker
     twat
     clit
     penis
+    vagina
+    breasts
     boobs
     tits
     whore

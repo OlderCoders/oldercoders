@@ -90,12 +90,14 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
-  test "username validation should reject reserved words" do
+  test "username validation should reject reserved words without regards to case" do
     # it should only accept letter, numbers and underscores
     invalid_username = ReservedWords.all.sample
     @accounts.each do |account|
       account.username = invalid_username
-      assert_not account.valid?, "#{invalid_username.inspect} should be an reserved username"
+      assert_not account.valid?, "#{account.username.inspect} should be an reserved username"
+      account.username.upcase!
+      assert_not account.valid?, "#{account.username.inspect} should be an reserved username"
     end
   end
 
