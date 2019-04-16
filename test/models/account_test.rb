@@ -236,7 +236,7 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
-  test "associated account should be destroyed when destroying User or Ensemble" do
+  test "associated account should be destroyed when destroying User" do
     assert_difference 'Account.count', @accounts.count * -1 do
       @accounts.each(&:destroy)
     end
