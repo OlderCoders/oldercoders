@@ -3,7 +3,7 @@
 michael:
   account: michael
   birthday: 1974-04-15
-  display_birthday: false
+  display_birthday: true
   website_url: https://kimili.com
   bio: <%= Faker::Movies::StarWars.quote %>
   employer_name:
