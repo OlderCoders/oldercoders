@@ -41,7 +41,8 @@ module OlderCoders
       top_routes = []
       Rails.application.routes.routes.each do |route|
         route = route.path.spec.to_s
-        skip if route.starts_with?("/:")
+        next if route.starts_with?("/:")
+
         route = route.split("/")[1]
         route = route.split("(")[0] if route&.include?("(")
         top_routes << route

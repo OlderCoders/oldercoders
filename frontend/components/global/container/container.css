@@ -1,0 +1,9 @@
+@import '../../../config/vars.css';
+
+.container {
+	max-width: var(--max-container-width);
+	padding-left: var(--space-1);
+	padding-right: var(--space-1);
+	margin-left: auto;
+	margin-right: auto;
+}

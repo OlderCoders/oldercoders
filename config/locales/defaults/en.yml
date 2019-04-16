@@ -1,4 +1,7 @@
 en:
+  global:
+    site_name: Older Coders
+
   attributes:
     role_list:
       user: User

@@ -1,0 +1,64 @@
+:root {
+	/* Fonts */
+	--font-sans-serif: "Public Sans", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+		"Helvetica Neue", sans-serif;
+
+	/* Colors */
+
+	--color-primary-dark: #512DA8;
+	--color-primary: #673AB7;
+	--color-primary-light: #D1C4E9;
+
+	--color-accent: #E040FB;
+
+	--color-white: #fff;
+	--color-black: #000;
+
+	--color-charcoal: #212121;
+	--color-graphite: #757575;
+	--color-putty: #bdbdbd;
+	--color-mist: #f2f2f2;
+
+	/* Animations */
+
+	--animation-default: all 160ms cubic-bezier(0.23, 1, 0.32, 1);
+	--animation-ease-in-out: all 200ms cubic-bezier(0.77, 0, 0.175, 1); /* https://easings.net/#easeInOutQuart */
+
+	/* Baseline Spacing */
+
+	--baseline: 0.4rem;
+
+	/* Breakpoints */
+
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 998px;
+	--breakpoint-xl: 1200px;
+
+	/* Container Sizes */
+
+	--max-container-width: 1140px;
+
+	/* Font Metrics */
+
+	--font-size--desktop:  19px;
+	--font-size--mobile:   17px;
+
+	--font-weight--thin:   100;
+	--font-weight--light:  300;
+	--font-weight--base:   400;
+	--font-weight--medium: 500;
+	--font-weight--bold:   700;
+	--font-weight-black:   900;
+
+	/* Spacing */
+
+	--space-0: 0;
+	--space-1: calc(var(--baseline) * 2);
+	--space-2: calc(var(--baseline) * 5);
+	--space-3: calc(var(--baseline) * 8);
+	--space-4: calc(var(--baseline) * 11);
+	--space-5: calc(var(--baseline) * 17);
+
+}

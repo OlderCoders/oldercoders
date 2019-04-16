@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Older Coders</title>
+
+    <title><%= content_for?(:title) ? strip_tags(yield :title) : t('global.site_name') %></title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script type="text/javascript">
+      (function(){
+        var html = document.querySelector('html');
+        if ('classList' in html) {
+          html.classList.add('js');
+        }
+      })()
+    </script>
+
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
+
+    <main>
     <%= yield %>
+
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>
