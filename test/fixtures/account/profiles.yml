@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+michael:
+  account: michael
+  birthday: 1974-04-15
+  display_birthday: false
+  website_url: https://kimili.com
+  bio: <%= Faker::Movies::StarWars.quote %>
+  employer_name:
+  employment_title:
+  employer_url:
+  twitter_username:
+  github_username:
+  facebook_url:
+  linkedin_url:
+  stackoverflow_url:
+  dribbble_url:
+  medium_url:
+  behance_url:
+  gitlab_url:
+
+hugh:
+  account: hugh
+  birthday: 1960-04-15
+  display_birthday: false
+  website_url: https://rebelalliance.net
+  bio: <%= Faker::Movies::StarWars.quote %>
+  employer_name:
+  employment_title:
+  employer_url:
+  twitter_username:
+  github_username:
+  facebook_url:
+  linkedin_url:
+  stackoverflow_url:
+  dribbble_url:
+  medium_url:
+  behance_url:
+  gitlab_url:

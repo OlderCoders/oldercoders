@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_141327) do
+ActiveRecord::Schema.define(version: 2019_04_16_025236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_profiles", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.date "birthday"
+    t.boolean "display_birthday", default: true
+    t.string "location"
+    t.json "latlon"
+    t.string "bio", limit: 255
+    t.string "website_url"
+    t.string "employer_name"
+    t.string "employment_title"
+    t.string "employer_url"
+    t.string "twitter_username"
+    t.string "github_username"
+    t.string "facebook_url"
+    t.string "linkedin_url"
+    t.string "stackoverflow_url"
+    t.string "dribbble_url"
+    t.string "medium_url"
+    t.string "behance_url"
+    t.string "gitlab_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_account_profiles_on_account_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "type", limit: 255
@@ -40,4 +65,5 @@ ActiveRecord::Schema.define(version: 2019_04_10_141327) do
     t.index ["username"], name: "index_accounts_on_username", unique: true
   end
 
+  add_foreign_key "account_profiles", "accounts", on_update: :cascade, on_delete: :cascade
 end

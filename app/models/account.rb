@@ -13,6 +13,8 @@ class Account < ApplicationRecord
 
   has_person_name
 
+  has_one  :profile, class_name: 'Account::Profile', inverse_of: :account, foreign_key: 'account_id', dependent: :destroy
+
   before_save          :sanitize_inputs
   before_save          :clean_username
   before_validation    :clean_email

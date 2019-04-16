@@ -21,10 +21,12 @@ gem 'bootsnap', '>= 1.4.1', require: false
 gem 'name_of_person', '~> 1.1'
 gem 'sanitize', '~> 5.0'
 gem 'translate_enum', '~> 0.1.3'
+gem 'validate_url', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', '~> 1.9'
 end
 
 group :development do
