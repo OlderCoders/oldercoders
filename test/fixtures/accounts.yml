@@ -23,3 +23,27 @@ hugh:
   activated:       true
   activated_at:    <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+
+luke:
+  first_name:      Luke
+  last_name:       the Dog
+  email:           luke@dogs.com
+  username:        mister_bat_ears
+  type:            User
+  role:            :user
+  password_digest: <%= Account.digest('password') %>
+  activated:       true
+  activated_at:    <%= Time.current.to_datetime %>
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+igor:
+  first_name:      Inactive
+  last_name:       Igor
+  email:           humpman@frankensteinscastle.com
+  username:        hunchback_man
+  type:            User
+  role:            :user
+  password_digest: <%= Account.digest('password') %>
+  activated:       false
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>

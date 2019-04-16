@@ -1,0 +1,17 @@
+one:
+  follower: michael
+  followee: hugh
+
+two:
+  follower: michael
+  followee: igor
+
+three:
+  follower: hugh
+  followee: michael
+
+four:
+  follower: igor
+  followee: michael
+
+

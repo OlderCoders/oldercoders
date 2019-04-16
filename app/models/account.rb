@@ -3,6 +3,7 @@ class Account < ApplicationRecord
   include Tokenable
   include Activatable
   include Digestable
+  include Friendable
 
   enum role: {
     user:      0,

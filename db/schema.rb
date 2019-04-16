@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_025236) do
+ActiveRecord::Schema.define(version: 2019_04_16_144837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2019_04_16_025236) do
     t.index ["email", "new_email"], name: "index_accounts_on_email_and_new_email", unique: true
     t.index ["role"], name: "index_accounts_on_role"
     t.index ["username"], name: "index_accounts_on_username", unique: true
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followee_id"], name: "index_relationships_on_followee_id"
+    t.index ["follower_id", "followee_id"], name: "index_relationships_on_follower_id_and_followee_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   add_foreign_key "account_profiles", "accounts", on_update: :cascade, on_delete: :cascade
