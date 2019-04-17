@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'Public Sans';
+	src: url('../assets/fonts/PublicSans-ExtraLight.woff2') format('woff2');
+	font-weight: var(--font-weight--extralight);
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Public Sans';
+	src: url('../assets/fonts/PublicSans-Regular.woff2') format('woff2');
+	font-weight: var(--font-weight--base);
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Public Sans';
+	src: url('../assets/fonts/PublicSans-Medium.woff2') format('woff2');
+	font-weight: var(--font-weight--medium);
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Public Sans';
+	src: url('../assets/fonts/PublicSans-Italic.woff2') format('woff2');
+	font-weight: var(--font-weight--base);
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Public Sans';
+	src: url('../assets/fonts/PublicSans-Bold.woff2') format('woff2');
+	font-weight: var(--font-weight--bold);
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Public Sans';
+	src: url('../assets/fonts/PublicSans-BoldItalic.woff2') format('woff2');
+	font-weight: var(--font-weight--bold);
+	font-style: italic;
+}
