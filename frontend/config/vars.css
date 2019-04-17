@@ -22,19 +22,12 @@
 
 	/* Animations */
 
-	--animation-default: all 160ms cubic-bezier(0.23, 1, 0.32, 1);
-	--animation-ease-in-out: all 200ms cubic-bezier(0.77, 0, 0.175, 1); /* https://easings.net/#easeInOutQuart */
+	--animation-default: 160ms cubic-bezier(0.23, 1, 0.32, 1);
+	--animation-ease-in-out: 200ms cubic-bezier(0.77, 0, 0.175, 1); /* https://easings.net/#easeInOutQuart */
 
 	/* Baseline Spacing */
 
 	--baseline: 0.4rem;
-
-	/* Breakpoints */
-
-	--breakpoint-sm: 576px;
-	--breakpoint-md: 768px;
-	--breakpoint-lg: 998px;
-	--breakpoint-xl: 1200px;
 
 	/* Container Sizes */
 
@@ -54,6 +47,11 @@
 	--font-weight--extrabold:   800;
 	--font-weight--black:       900;
 
+	/* Line Height */
+
+	--line-height--base:       1.5;
+	--line-height--heading:    1.1;
+
 	/* Spacing */
 
 	--space-0: 0;
@@ -62,5 +60,22 @@
 	--space-3: calc(var(--baseline) * 8);
 	--space-4: calc(var(--baseline) * 11);
 	--space-5: calc(var(--baseline) * 17);
+
+	/* Borders */
+
+	--border-color:       var(--color-putty);
+	--border-style:       solid;
+	--border-radius:      7px;
+	--border-width:       1px;
+
+	/* Buttons */
+
+	--button-padding:     .8rem 2.2rem;
+	--button-padding--sm: .5rem .9rem;
+
+	/* Box Shadows */
+
+	--shadow-default:      0 1px 2px rgba(0,0,0,.15);
+	--shadow-subtle:       0 1px 1px rgba(0,0,0,.04);
 
 }

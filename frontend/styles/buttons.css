@@ -1,0 +1,142 @@
+/*
+Base button styles
+-------------------------------------------------------------------
+*/
+button,
+input[type="submit"],
+.btn {
+	background-image: none;
+	border-radius: var(--border-radius);
+	border-style: solid;
+	border-width: var(--border-width);
+	box-shadow: var(--shadow-default);
+	cursor: pointer;
+	display: block;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: var(--font-weight--medium);
+	line-height: 1;
+	margin-bottom: 0;
+	margin-top: var(--space1);
+	padding: var(--button-padding);
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	touch-action: manipulation;
+	transition: background-color var(--animation-default),
+		background var(--animation-default), color var(--animation-default),
+		border var(--animation-default);
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 100%;
+	-webkit-appearance: none;
+	appearance: none;
+
+	&:hover,
+	&:focus {
+		outline: 0;
+		text-decoration: none;
+	}
+
+	&:active {
+		outline: 0;
+		background-image: none;
+	}
+
+	&.disabled,
+	&[disabled],
+	&[readonly],
+	fieldset[disabled] & {
+		cursor: not-allowed !important;
+		opacity: 1;
+		pointer-events: none;
+	}
+
+	@media (--breakpoint-sm) {
+		display: inline-block;
+		margin-top: 0;
+		width: auto;
+	}
+}
+
+a.btn {
+	&.disabled,
+	fieldset[disabled] & {
+		pointer-events: none;
+	}
+}
+
+/*
+Button sizes
+-------------------------------------------------------------------
+*/
+.btn--sm {
+	font-size: 0.705882353rem;
+	padding: var(--button-padding--sm);
+}
+
+/*
+ Button skins
+-------------------------------------------------------------------
+*/
+
+/* Primary button */
+
+.btn--primary,
+.btn--primary:visited  {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: var(--color-white);
+
+    &:hover,
+    &:focus {
+        background-color: color(var(--color-primary) shade(20%));
+        border-color: color(var(--color-primary) shade(20%));
+    }
+
+    &:active {
+        background-color: color(var(--color-primary) shade(35%));
+        border-color: color(var(--color-primary) shade(35%));
+    }
+}
+
+/* Secondary button */
+
+.btn--secondary,
+.btn--secondary:visited {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    color: var(--color-charcoal);
+
+    &:hover,
+    &:focus {
+        background-color: color(var(--color-primary-light) shade(10%));
+        border-color: color(var(--color-primary-light) shade(10%));
+    }
+
+    &:active {
+        background-color: color(var(--color-primary-light) shade(20%));
+        border-color: color(var(--color-primary-light) shade(20%));
+    }
+}
+
+/* Light button */
+
+.btn--light,
+.btn--light:visited {
+    background-color: color(var(--color-mist) shade(6%));
+    border-color: color(var(--color-mist) shade(6%));
+    color: var(--color-charcoal);
+
+    &:hover,
+    &:focus {
+        background-color: color(var(--color-white) shade(2%));
+        border-color: color(var(--color-white) shade(2%));
+    }
+
+    &:active {
+        background-color: color(var(--color-white) shade(1%));
+        border-color: color(var(--color-white) shade(1%));
+    }
+}

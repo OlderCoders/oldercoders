@@ -1,5 +1,5 @@
 import "controllers";
-import "config/vars.css";
+import "config";
 import "styles";
 import "components/global";
 
