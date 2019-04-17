@@ -1,9 +1,9 @@
 <% content_for :title, t('.title', name: @user.name, username: @user.username) %>
 
-<%= component 'global/container', element: :section do %>
+<section class="container">
   <header>
     <h1>
       <%= @user.name %> <em>@<%= @user.username %></em>
     </h1>
   </header>
-<% end %>
+</section>

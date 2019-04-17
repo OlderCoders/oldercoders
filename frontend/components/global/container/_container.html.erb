@@ -1,7 +1,0 @@
-<%
-  element = local_assigns.key?(:element) ? local_assigns[:element] : :div
-%>
-
-<%= content_tag element, class: 'container' do %>
-  <%= yield %>
-<% end %>
