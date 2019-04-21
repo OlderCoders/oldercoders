@@ -1,7 +1,7 @@
 import "controllers";
 import "config";
 import "styles";
-import "components/global";
+import "components";
 
 require("@rails/ujs").start();
 // require("channels");

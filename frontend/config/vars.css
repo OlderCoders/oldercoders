@@ -18,6 +18,7 @@
 	--color-charcoal: #212121;
 	--color-graphite: #757575;
 	--color-putty: #bdbdbd;
+	--color-smoke: #d7d7d7;
 	--color-mist: #f2f2f2;
 
 	/* Animations */
@@ -27,16 +28,20 @@
 
 	/* Baseline Spacing */
 
-	--baseline: 0.4rem;
+	--baseline: 0.5rem;
 
 	/* Container Sizes */
 
 	--max-container-width: 1140px;
 
 	/* Font Metrics */
-
-	--font-size--desktop:  19px;
-	--font-size--mobile:   17px;
+	--font-size--extrasmall:    1.3rem;
+	--font-size--small:         1.4rem;
+	--font-size--medium:        1.7rem;
+	--font-size--default:       1.9rem;
+	--font-size--large:         2.4rem;
+	--font-size--larger:        2.8rem;
+	--font-size--extralarge:    4.0rem;
 
 	--font-weight--thin:        100;
 	--font-weight--extralight:  200;
@@ -63,15 +68,18 @@
 
 	/* Borders */
 
-	--border-color:       var(--color-putty);
+	--border-color:       var(--color-smoke);
 	--border-style:       solid;
-	--border-radius:      7px;
+	--border-radius:      4px;
 	--border-width:       1px;
 
 	/* Buttons */
 
 	--button-padding:     .8rem 2.2rem;
 	--button-padding--sm: .5rem .9rem;
+
+	/* Forms */
+	--form-padding:       var(--baseline) var(--space-1);
 
 	/* Box Shadows */
 

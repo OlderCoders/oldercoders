@@ -1,0 +1,263 @@
+/*
+Base form styles
+ -------------------------------------------------------------------
+ Apply `.form-control` to any of the following form controls:
+ select
+ textarea
+ input (of any type)
+*/
+
+input,
+textarea,
+.form-control {
+    background-image: none;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--color-charcoal);
+    display: block;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size--medium);
+    line-height: var(--line-height--base);
+    max-width: 100%;
+    padding: var(--form-padding);
+    width: 100%;
+	-moz-osx-font-smoothing: grayscale;
+
+	@media (--breakpoint-sm) {
+		font-size: var(--font-size--default);
+	}
+}
+
+label,
+.label {
+    cursor: default;
+	display: inline-block;
+	font-size: var(--font-size--medium);
+	font-weight: var(--font-weight--medium);
+    max-width: 100%;
+}
+
+legend,
+.legend {
+    display: block;
+    white-space: normal;
+    width: 100%;
+}
+
+/*
+Form layouts
+-------------------------------------------------------------------
+*/
+.form--stacked {
+    .input,
+    .select,
+    .radio,
+    .checkbox,
+    .textarea,
+    .label {
+        display: block;
+        width: 100%;
+    }
+}
+
+.form--inline {
+	input,
+    .form-control {
+        display: inline-block;
+        vertical-align: middle;
+        width: auto;
+    }
+
+	input[type="radio"],
+	input[type="checkbox"],
+    .radio,
+    .checkbox {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+/* Input singles */
+.input-field {
+	position: relative;
+	margin-bottom: 2rem;
+
+	.length-counter {
+		position: absolute;
+		top: 0.3rem;
+		right: 0;
+	}
+}
+
+/* Input hints */
+.input-hint {
+	font-size: var(--font-size--small);
+	color: var(--color-putty);
+	margin: var(--baseline) 0 0 0;
+	display: block;
+
+	&:empty {
+		display: none;
+	}
+
+	em {
+		font-style: normal;
+		color: var(--color-graphite);
+		font-weight: var(--font-weight--medium);
+	}
+
+	strong {
+		font-weight: var(--font-weight--medium);
+	}
+
+	&:not(.-formatting) {
+		strong {
+			color: var(--color-charcoal);
+		}
+	}
+ }
+
+
+
+/*
+Select
+----------------------------------------------------------------
+*/
+
+.select {
+    color: var(--color-charcoal);
+    display: block;
+    position: relative;
+}
+
+.select select {
+    background-color: var(--color-white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--color-charcoal);
+    cursor: pointer;
+    display: inline-block;
+    font-family: var(--font-sans-serif);
+    line-height: var(--line-height--base);
+    margin: 0;
+    outline: 0;
+    padding: var(--form-padding);
+    width: 100%;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+
+    > option {
+        background-color: var(--color-white);
+    }
+}
+
+.select:after {
+    border-top: 5px solid;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: "";
+    display: inline-block;
+    height: 0;
+    margin-top: -2px;
+    pointer-events: none;
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    width: 0;
+}
+
+
+/*
+Checkboxes & radios
+-------------------------------------------------------------------
+*/
+
+.control {
+    color: var(--color-charcoal);
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+
+.control input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.control input ~ span {
+	display: inline-block;
+}
+
+.control input ~ span::before {
+	content: '';
+    background-color: var(--color-white);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: 2px solid var(--color-putty);
+    color: var(--color-charcoal);
+    display: inline-block;
+    height: 19px;
+    left: 0;
+	position: relative;
+	margin-right: var(--baseline);
+    text-align: center;
+    top: .3rem;
+    width:  19px;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.control:hover input ~ span::before,
+.control input:focus ~ span::before { border-color: color(var(--color-primary) tint(10%)); }
+
+/* Checked & Active state */
+
+.control input:checked ~ span::before,
+.control input:active ~ span::before {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: var(--animation-default);
+    border-color: color(var(--color-primary) shade(10%));
+}
+
+/* Active State */
+
+
+/* Checkbox modifiers */
+
+input[type="checkbox"] ~ span::before { border-radius: var(--border-radius ) }
+input[type="checkbox"]:checked ~ span::before {
+    background-image: url(../assets/images/check.svg);
+    transition: var(--animation-default);
+}
+
+/* Radio modifiers */
+
+input[type="radio"] ~ span::before { border-radius: 50%; }
+input[type="radio"]:checked ~ span::before {
+    background-image: url(../assets/images/radio.svg);
+    transition: var(--animation-default);
+}
+
+/*
+Placeholder styling
+-------------------------------------------------------------------
+*/
+
+::-webkit-input-placeholder {
+    color: var(--color-putty);
+    -webkit-font-smoothing: antialiased;
+}
+::-moz-placeholder {
+    color: var(--color-putty);
+    -moz-osx-font-smoothing: grayscale;
+}
+:-ms-input-placeholder {
+    color: var(--color-putty);
+}

@@ -13,18 +13,19 @@ input[type="submit"],
 	cursor: pointer;
 	display: block;
 	font-family: inherit;
-	font-size: 1rem;
+	font-size: var(--font-size--medium);
 	font-weight: var(--font-weight--medium);
 	line-height: 1;
 	margin-bottom: 0;
-	margin-top: var(--space1);
+	margin-top: var(--space-1);
 	padding: var(--button-padding);
 	text-align: center;
 	text-decoration: none;
-	text-transform: uppercase;
 	touch-action: manipulation;
-	transition: background-color var(--animation-default),
-		background var(--animation-default), color var(--animation-default),
+	transition:
+		background-color var(--animation-default),
+		background var(--animation-default),
+		color var(--animation-default),
 		border var(--animation-default);
 	user-select: none;
 	vertical-align: middle;
