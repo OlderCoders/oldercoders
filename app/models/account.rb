@@ -5,6 +5,8 @@ class Account < ApplicationRecord
   include Digestable
   include Friendable
 
+  attr_accessor :email_confirmation_token
+
   enum role: {
     user:      0,
     admin:     1,
@@ -19,7 +21,7 @@ class Account < ApplicationRecord
   before_save          :sanitize_inputs
   before_save          :clean_username
   before_validation    :clean_email
-  # after_validation     :move_friendly_id_error_to_username
+  after_create         :create_profile
 
   VALID_ACCOUNT_TYPES = %w[User].freeze
   VALID_USERNAME = /\A\w+\Z/.freeze # Case insensitive match a-z, 0-9 and underscores

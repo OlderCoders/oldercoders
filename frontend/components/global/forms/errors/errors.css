@@ -1,0 +1,36 @@
+/* Form Error Messages
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.form-errors {
+	h4 {
+		margin-bottom: 1rem;
+		font-size: var(--font-size--default);
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+
+
+		li {
+			background:	var(--color-error);
+			border-radius: var(--border-radius);
+			color: var(--color-white);
+			font-size: var(--font-size--medium);
+			font-weight: var(--font-weight--medium);
+			padding: var(--baseline) var(--space-1);
+			margin: 0 0 var(--baseline);
+			box-shadow: var(--shadow-default);
+
+			&:before {
+				content: '\2192';
+				display: inline-block;
+				margin-right: var(--baseline);
+			}
+		}
+
+		a {
+			color: var(--color-white);
+			text-decoration: underline;
+		}
+	}
+}

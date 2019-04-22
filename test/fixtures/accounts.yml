@@ -47,3 +47,38 @@ igor:
   password_digest: <%= Account.digest('password') %>
   activated:       false
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+  # Patty has no profile associated
+patty:
+  first_name:      Profileless
+  last_name:       Patty
+  email:           no_profile@patty.com
+  username:        patty
+  type:            User
+  role:            :user
+  password_digest: <%= Account.digest('password') %>
+  activated:       true
+  activated_at:    <%= Time.current.to_datetime %>
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+# Inigo represents an invited account - one which doesn't yet have a pw, username, nor profile
+inigo:
+  first_name:      Invited
+  last_name:       Inigo
+  email:           inigo@example.com
+  type:            User
+  role:            :user
+  activated:       false
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+# umberto has no username nor profile associated
+umberto:
+  first_name:      Usernameless
+  last_name:       Umberto
+  email:           umberto@example.com
+  type:            User
+  role:            :user
+  password_digest: <%= Account.digest('password') %>
+  activated:       true
+  activated_at:    <%= Time.current.to_datetime %>
+  time_zone:       <%= TimeZoneHelper.random_time_zone %>

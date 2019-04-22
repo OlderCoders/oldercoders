@@ -10,7 +10,7 @@ class Account::Profile < ApplicationRecord
 
   validate :birthday_should_within_age_range
 
-  validates :birthday, presence: true
+  validates :birthday, presence: true, on: :update
   validates :location, length: { maximum: 128 }
   validates :bio, length: { maximum: 255 }
   validates :twitter_username,

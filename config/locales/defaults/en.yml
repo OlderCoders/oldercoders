@@ -1,6 +1,13 @@
 en:
   global:
     site_name: Older Coders
+    log_in: Sign In
+
+  forms:
+    error_header:
+      zero: Awesome, there’s no problem!
+      one: 'There’s a problem:'
+      other: 'There are some problems:'
 
   attributes:
     role_list:

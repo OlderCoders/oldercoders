@@ -1,0 +1,17 @@
+en:
+  sessions:
+
+    please_log_in: Please Sign In
+
+    new:
+      log_in: Sign In to Older Coders
+      subheader: Wecome Back!
+      forgot_password: Forgot your password?
+      remember: Keep me signed in
+
+    create:
+      incorrect_credentials: "The email address and password you entered didn't match our records. Please try again."
+      account_not_activated: "Your account has not been activated"
+      resend_activation: "Please check your email for your account activation link. If you can't find it, we can <a href='%{link}'>resend the activation email</a>."
+      create_username: "Hi, %{name}! Please take a moment to choose your Username."
+      create_profile: "Take a moment to fill out your profile, %{name}."

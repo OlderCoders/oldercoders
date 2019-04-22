@@ -1,0 +1,27 @@
+<%= component 'global/forms/errors', errors: @user.errors.full_messages, header: @error_header if @user.present? %>
+
+<%= form_for(:session, url: login_path) do |f| %>
+  <div class="input-field">
+    <%= f.label(:email) %>
+    <%= f.email_field(:email) %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label(:password) %>
+    <%= f.password_field(:password) %>
+    <p class="input-hint">
+      <a href="<%# new_password_reset_path %>"><%= t 'sessions.new.forgot_password' %></a>
+    </p>
+  </div>
+
+  <div class="input-field">
+    <label class="control">
+      <%= f.check_box(:remember) %>
+      <span><%= t 'sessions.new.remember' %></span>
+    </label>
+  </div>
+
+  <div class="actions">
+    <%= f.button t('global.log_in'), class: 'btn--primary' %>
+  </div>
+<% end %>

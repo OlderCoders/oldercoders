@@ -1,0 +1,18 @@
+<% if errors.any? %>
+  <div class="form-errors">
+    <h4>
+      <% if local_assigns.key?(:header) && local_assigns[:header].present? %>
+        <%= header %>
+      <% else %>
+        <%= t('forms.error_header', count: errors.count) %>
+      <% end %>
+    </h4>
+
+    <ul>
+      <% errors.each do |error| %>
+        <li><%= error.html_safe %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
