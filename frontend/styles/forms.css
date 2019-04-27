@@ -10,17 +10,18 @@ Base form styles
 input,
 textarea,
 .form-control {
-    background-image: none;
-    border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--color-charcoal);
-    display: block;
-    font-family: var(--font-sans-serif);
-    font-size: var(--font-size--medium);
-    line-height: var(--line-height--base);
-    max-width: 100%;
-    padding: var(--form-padding);
-    width: 100%;
+	background-image: none;
+	border: var(--input-border-width) solid var(--border-color);
+	border-radius: var(--border-radius);
+	color: var(--color-charcoal);
+	display: block;
+	font-family: var(--font-sans-serif);
+	font-size: var(--font-size--medium);
+	height: var(--input-height);
+	line-height: inherit;
+	max-width: 100%;
+	padding: var(--form-padding);
+	width: 100%;
 	-moz-osx-font-smoothing: grayscale;
 
 	@media (--breakpoint-sm) {
@@ -30,18 +31,18 @@ textarea,
 
 label,
 .label {
-    cursor: default;
+	cursor: default;
 	display: inline-block;
 	font-size: var(--font-size--medium);
 	font-weight: var(--font-weight--medium);
-    max-width: 100%;
+	max-width: 100%;
 }
 
 legend,
 .legend {
-    display: block;
-    white-space: normal;
-    width: 100%;
+	display: block;
+	white-space: normal;
+	width: 100%;
 }
 
 /*
@@ -49,50 +50,102 @@ Form layouts
 -------------------------------------------------------------------
 */
 .form--stacked {
-    .input,
-    .select,
-    .radio,
-    .checkbox,
-    .textarea,
-    .label {
-        display: block;
-        width: 100%;
-    }
+	.input,
+	.select,
+	.radio,
+	.checkbox,
+	.textarea,
+	.label {
+		display: block;
+		width: 100%;
+	}
 }
 
 .form--inline {
 	input,
-    .form-control {
-        display: inline-block;
-        vertical-align: middle;
-        width: auto;
-    }
+	.form-control {
+		display: inline-block;
+		vertical-align: middle;
+		width: auto;
+	}
 
 	input[type="radio"],
 	input[type="checkbox"],
-    .radio,
-    .checkbox {
-        display: inline-block;
-        vertical-align: middle;
-    }
+	.radio,
+	.checkbox {
+		display: inline-block;
+		vertical-align: middle;
+	}
 }
 
 /* Input singles */
 .input-field {
 	position: relative;
-	margin-bottom: 2rem;
+	margin-bottom: var(--space-2);
+}
 
-	.length-counter {
-		position: absolute;
-		top: 0.3rem;
-		right: 0;
+/* Input Groups */
+.input-group {
+	width: 100%;
+	display: flex;
+	margin-bottom: var(--space-2);
+
+	+ .input-group {
+		margin-top: calc(var(--space-1) * -1);
+	}
+
+
+	& > input,
+	& > button,
+	& > .btn,
+	& > .dropdown button,
+	& > .dropdown .btn {
+	  border-radius: 0;
+	}
+
+	& > input:first-child,
+	& > button:first-child,
+	& > .btn:first-child,
+	& > .dropdown:first-child button,
+	& > .dropdown:first-child .btn,
+	& > .visually-hidden:first-child + input,
+	& > .visually-hidden:first-child + button,
+	& > .visually-hidden:first-child + .btn,
+	& > .visually-hidden:first-child + .dropdown button,
+	& > .visually-hidden:first-child + .dropdown .btn {
+	  border-top-left-radius: var(--border-radius);
+	  border-bottom-left-radius: var(--border-radius);
+	}
+
+	& > input:last-child,
+	& > button:last-child,
+	& > .btn:last-child,
+	& > .dropdown:last-child button,
+	& > .dropdown:last-child .btn {
+	  border-top-right-radius: var(--border-radius);
+	  border-bottom-right-radius: var(--border-radius);
+	}
+
+	& > input + input,
+	& > .input-addon + input {
+	  border-left-width: 0;
+	}
+
+	& > input + input:focus {
+	  border-left-width: var(--input-border-width);
+	  margin-left: calc(var(--input-border-width) * -1);
+	}
+
+	&:focus {
+	  /* Force a new stacking context so focus rings don't get truncated by adjacent elements */
+	  transform: translateZ(0);
 	}
 }
 
 /* Input hints */
 .input-hint {
 	font-size: var(--font-size--small);
-	color: var(--color-putty);
+	color: var(--color-graphite);
 	margin: var(--baseline) 0 0 0;
 	display: block;
 
@@ -102,7 +155,7 @@ Form layouts
 
 	em {
 		font-style: normal;
-		color: var(--color-graphite);
+		color: var(--color-charcoal);
 		font-weight: var(--font-weight--medium);
 	}
 
@@ -115,9 +168,45 @@ Form layouts
 			color: var(--color-charcoal);
 		}
 	}
- }
+}
 
+/* Input groups can have input hints, but we need to adjust margins a bit */
+.input-group + .input-hint {
+	margin-top: calc(var(--space-2) * -1);
+	margin-bottom: var(--space-1);
+}
 
+/* Input Addons */
+.input-addon {
+	font-size: var(--font-size--medium);
+	height: var(--input-height);
+	line-height: calc(var(--input-height) - var(--input-border-width) - var(--input-border-width));
+	border: var(--input-border-width) solid var(--border-color);
+	background: var(--input-addon-bg-color);
+	color: var(--input-addon-color);
+	padding: 0 var(--baseline);
+	white-space: nowrap;
+
+	&:first-child {
+		border-right-width: 0;
+		border-top-left-radius: var(--border-radius);
+		border-bottom-left-radius: var(--border-radius);
+	}
+
+	&:last-child {
+		border-left-width: 0;
+		border-top-right-radius: var(--border-radius);
+		border-bottom-right-radius: var(--border-radius);
+	}
+
+	&.-min-width {
+		min-width: 6em;
+	}
+
+	@media (--breakpoint-sm) {
+		font-size: var(--font-size--default);
+	}
+}
 
 /*
 Select
@@ -125,49 +214,48 @@ Select
 */
 
 .select {
-    color: var(--color-charcoal);
-    display: block;
-    position: relative;
+	color: var(--color-charcoal);
+	display: block;
+	position: relative;
 }
 
 .select select {
-    background-color: var(--color-white);
-    border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--color-charcoal);
-    cursor: pointer;
-    display: inline-block;
-    font-family: var(--font-sans-serif);
-    line-height: var(--line-height--base);
-    margin: 0;
-    outline: 0;
-    padding: var(--form-padding);
-    width: 100%;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+	background-color: var(--color-white);
+	border: var(--border-width) solid var(--border-color);
+	border-radius: var(--border-radius);
+	color: var(--color-charcoal);
+	cursor: pointer;
+	display: inline-block;
+	font-family: var(--font-sans-serif);
+	line-height: var(--line-height--base);
+	margin: 0;
+	outline: 0;
+	padding: var(--form-padding);
+	width: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 
-    > option {
-        background-color: var(--color-white);
-    }
+	> option {
+		background-color: var(--color-white);
+	}
 }
 
 .select:after {
-    border-top: 5px solid;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid transparent;
-    content: "";
-    display: inline-block;
-    height: 0;
-    margin-top: -2px;
-    pointer-events: none;
-    position: absolute;
-    right: 13px;
-    top: 50%;
-    width: 0;
+	border-top: 5px solid;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid transparent;
+	content: "";
+	display: inline-block;
+	height: 0;
+	margin-top: -2px;
+	pointer-events: none;
+	position: absolute;
+	right: 13px;
+	top: 50%;
+	width: 0;
 }
-
 
 /*
 Checkboxes & radios
@@ -175,16 +263,16 @@ Checkboxes & radios
 */
 
 .control {
-    color: var(--color-charcoal);
-    cursor: pointer;
-    display: block;
-    position: relative;
+	color: var(--color-charcoal);
+	cursor: pointer;
+	display: block;
+	position: relative;
 }
 
 .control input {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
+	opacity: 0;
+	position: absolute;
+	z-index: -1;
 }
 
 .control input ~ span {
@@ -192,57 +280,62 @@ Checkboxes & radios
 }
 
 .control input ~ span::before {
-	content: '';
-    background-color: var(--color-white);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: 2px solid var(--color-putty);
-    color: var(--color-charcoal);
-    display: inline-block;
-    height: 19px;
-    left: 0;
+	content: "";
+	background-color: var(--color-white);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 60%;
+	border: 2px solid var(--color-putty);
+	color: var(--color-charcoal);
+	display: inline-block;
+	height: 19px;
+	left: 0;
 	position: relative;
 	margin-right: var(--baseline);
-    text-align: center;
-    top: .3rem;
-    width:  19px;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+	text-align: center;
+	top: 0.3rem;
+	width: 19px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .control:hover input ~ span::before,
-.control input:focus ~ span::before { border-color: color(var(--color-primary) tint(10%)); }
+.control input:focus ~ span::before {
+	border-color: color(var(--color-primary) tint(10%));
+}
 
 /* Checked & Active state */
 
 .control input:checked ~ span::before,
 .control input:active ~ span::before {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    transition: var(--animation-default);
-    border-color: color(var(--color-primary) shade(10%));
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	transition: var(--animation-default);
+	border-color: color(var(--color-primary) shade(10%));
 }
 
 /* Active State */
 
-
 /* Checkbox modifiers */
 
-input[type="checkbox"] ~ span::before { border-radius: var(--border-radius ) }
+input[type="checkbox"] ~ span::before {
+	border-radius: var(--border-radius);
+}
 input[type="checkbox"]:checked ~ span::before {
-    background-image: url(../assets/images/check.svg);
-    transition: var(--animation-default);
+	background-image: url(../assets/images/check.svg);
+	transition: var(--animation-default);
 }
 
 /* Radio modifiers */
 
-input[type="radio"] ~ span::before { border-radius: 50%; }
+input[type="radio"] ~ span::before {
+	border-radius: 50%;
+}
 input[type="radio"]:checked ~ span::before {
-    background-image: url(../assets/images/radio.svg);
-    transition: var(--animation-default);
+	background-image: url(../assets/images/radio.svg);
+	transition: var(--animation-default);
 }
 
 /*
@@ -251,13 +344,13 @@ Placeholder styling
 */
 
 ::-webkit-input-placeholder {
-    color: var(--color-putty);
-    -webkit-font-smoothing: antialiased;
+	color: var(--color-putty);
+	-webkit-font-smoothing: antialiased;
 }
 ::-moz-placeholder {
-    color: var(--color-putty);
-    -moz-osx-font-smoothing: grayscale;
+	color: var(--color-putty);
+	-moz-osx-font-smoothing: grayscale;
 }
 :-ms-input-placeholder {
-    color: var(--color-putty);
+	color: var(--color-putty);
 }

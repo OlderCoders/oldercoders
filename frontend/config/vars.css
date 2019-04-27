@@ -63,10 +63,11 @@
 
 	--space-0: 0;
 	--space-1: calc(var(--baseline) * 2);
-	--space-2: calc(var(--baseline) * 5);
-	--space-3: calc(var(--baseline) * 8);
-	--space-4: calc(var(--baseline) * 11);
-	--space-5: calc(var(--baseline) * 17);
+	--space-2: calc(var(--baseline) * 3);
+	--space-3: calc(var(--baseline) * 5);
+	--space-4: calc(var(--baseline) * 8);
+	--space-5: calc(var(--baseline) * 11);
+	--space-6: calc(var(--baseline) * 17);
 
 	/* Borders */
 
@@ -77,11 +78,15 @@
 
 	/* Buttons */
 
-	--button-padding:     .8rem 2.2rem;
-	--button-padding--sm: .5rem .9rem;
+	--button-padding:     var(--space-2) var(--space-3);
+	--button-padding--sm: var(--space-1) var(--space-2);
 
 	/* Forms */
-	--form-padding:       var(--baseline) var(--space-1);
+	--form-padding:       	var(--baseline) var(--space-1);
+	--input-height:        4.4rem;
+	--input-border-width:	1px;
+	--input-addon-bg-color:	var(--color-white);
+	--input-addon-color:	var(--color-putty);
 
 	/* Box Shadows */
 
