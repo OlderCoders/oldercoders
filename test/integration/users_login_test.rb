@@ -57,19 +57,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  # test "login with valid information without having a profile set up" do
-  #   get login_path
-  #   assert_template 'sessions/new'
-  #   log_in_as @user_no_profile
-  #   assert_nil @user_no_profile.profile
-  #   assert is_logged_in?
-  #   # Should be redirected to profile creation
-  #   assert_redirected_to new_account_profile_path
-  #   follow_redirect!
-  #   assert_template 'accounts/profiles/new'
-  #   assert_not flash.empty?
-  # end
-
   test "login as an inactive user" do
     get login_path
     assert_template 'sessions/new'

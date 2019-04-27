@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'user#show', format: 'html'
+  root 'sessions#new', format: 'html'
 
   # Login/Logout
   get    'login',  to: 'sessions#new'
@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   # Account Activation
   get    'activate/:id',          to: 'account_activations#edit',   as: 'account_activation'
   get    'activation/resend/:id', to: 'account_activations#resend', as: 'resend_account_activation'
+
+  scope '/account' do
+    scope module: :accounts do
+      resource :username, only: %i[new update]
+    end
+  end
 
   scope '/:username' do
     resource :user, only: %i[show edit update destroy], path: '/'

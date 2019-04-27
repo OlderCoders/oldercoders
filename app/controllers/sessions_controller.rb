@@ -23,9 +23,6 @@ class SessionsController < ApplicationController
     if @user.username.blank?
       flash[:notice] = t('.create_username', name: @user.name)
       redirect_to new_username_path and return
-    elsif @user.profile.blank?
-      flash[:notice] = t('.create_profile', name: @user.name)
-      redirect_to new_account_profile_path and return
     end
     redirect_back_or user_path(username: @user.username)
   end
