@@ -24,6 +24,7 @@ Welcome to the [oldercoders.net](https://oldercoders.net) codebase, and thank yo
     - [The stack](#the-stack)
     - [Engineering standards](#engineering-standards)
       - [Style Guide](#style-guide)
+      - [CSS](#css)
       - [Pre-Commit Hooks](#pre-commit-hooks)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
@@ -51,6 +52,8 @@ This project follows uses [Rubocop's](https://github.com/bbatsov/rubocop) defaul
 
 For Javascript, we follow [Airbnb's JS Style Guide](https://github.com/airbnb/javascript), using [ESLint](https://eslint.org) and [prettier](https://github.com/prettier/prettier). If you have ESLint installed with your text editor of choice, you should be up and running. 
 
+#### CSS
+
 For CSS, we are using straight CSS, leveraging many of the newer features in the CSS spec such as variables, custom media queries, and color functions. [PostCSS](https://postcss.org) is [configured](https://github.com/OlderCoders/oldercoders/blob/master/postcss.config.js) to compile these newer features to CSS that most browsers will understand, and also adds some syntactic sugar like nesting selectors and ancestors which will be familiar to those of who are familiar with writing [SCSS](https://sass-lang.com).
 
 #### Pre-Commit Hooks
@@ -59,7 +62,7 @@ When commits are made, a git precommit hook runs via [lint-staged](https://githu
 
 ## Getting Started
 
-This section provides a high-level requirement & quick start guide. For detailed installations, please check out our [docs](http://docs.dev.to/installation).
+This section provides a high-level requirement & quick start guide.
 
 ### Prerequisites
 
@@ -150,9 +153,9 @@ $ bundle exec rails destroy component global/header
 
 Assets that aren't specific to a component can be found in various directories under `frontend`.
 
-- CSS configuration files are in `frontend/config`
-- Global CSS is in `frontend/styles`
-- Global JavaScript is in `frontend/scripts`
-- Webpack entry files are in in `frontend/packs` (e.g. Webpack compiles `application.js` to `application-[hash].js` and `application-[hash].css`)
-- Stimulus controllers are in `frontend/controllers`
-- Static assets, such as fonts and images are in `frontend/assets`
+- `frontend/config` contains CSS configuration files
+- `frontend/styles` contains global CSS
+- `frontend/scripts` contains global JavaScript 
+- `frontend/packs` contains Webpack entry files (e.g. Webpack compiles `application.js` to `application-[hash].js` and `application-[hash].css`)
+- `frontend/controllers` contains Stimulus.js controllers
+- `frontend/assets` contains static assets, such as fonts and images.
