@@ -1,0 +1,46 @@
+<% content_for :title, t('.title') %>
+
+<article class="edit-form">
+  <header>
+
+    <h1><%= t('.title') %></h1>
+
+    <% if t('.next_steps').any? %>
+      <% for step in t('.next_steps') %>
+        <p>
+          <%= step.html_safe %>
+        </p>
+      <% end %>
+    <% end %>
+
+  </header>
+
+  <%= component 'global/forms/errors', errors: @account.errors.full_messages %>
+
+  <%= form_for @account, url: username_path do |f| %>
+    <div class="input-field">
+      <%= f.label(:username) %>
+      <div class="input-group">
+        <span class="input-addon">@</span>
+        <%= f.text_field(
+            :username,
+            required: 'required',
+            pattern: '^[a-zA-Z0-9_]+$',
+            maxlength: 100,
+            data: {
+              bind_to: '.input-hint .username'
+            }
+          )
+        %>
+      </div>
+      <p class="input-hint">
+        <%= t('accounts.profiles.edit.hints.username', url: root_url, username: @account.username).html_safe %>
+      </p>
+    </div>
+
+    <div class="actions">
+      <%= f.button t('.set_username'), class: 'btn--primary' %>
+    </div>
+  <% end %>
+
+</article>
