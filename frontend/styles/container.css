@@ -1,7 +1,23 @@
 .container {
-	max-width: var(--max-container-width);
+	max-width: var(--container-width--default);
 	padding-left: var(--space-1);
 	padding-right: var(--space-1);
 	margin-left: auto;
 	margin-right: auto;
+
+	&--narrow {
+		max-width: var(--container-width--narrow);
+		padding-left: var(--space-1);
+		padding-right: var(--space-1);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&--wide {
+		max-width: var(--container-width--wide);
+		padding-left: var(--space-1);
+		padding-right: var(--space-1);
+		margin-left: auto;
+		margin-right: auto;
+	}
 }

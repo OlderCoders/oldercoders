@@ -34,7 +34,9 @@
 
 	/* Container Sizes */
 
-	--max-container-width: 1140px;
+	--container-width--narrow:  50rem;
+	--container-width--default: 114rem;
+	--container-width--wide:    138rem;
 
 	/* Font Metrics */
 	--font-size--extrasmall:    1.3rem;

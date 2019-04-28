@@ -188,7 +188,7 @@ Form layouts
 	white-space: nowrap;
 
 	&:first-child {
-		border-right-width: 0;
+		border-right-color: var(--color-mist);
 		border-top-left-radius: var(--border-radius);
 		border-bottom-left-radius: var(--border-radius);
 	}
