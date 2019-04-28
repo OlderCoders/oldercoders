@@ -3,5 +3,7 @@ class ApplicationController < ActionController::Base
 
   include Authenticatable
   include CurrentUser
+  include EnforceUserProfile
   include Errorable
+
 end
