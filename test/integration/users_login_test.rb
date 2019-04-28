@@ -81,4 +81,13 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_nil cookies['remember_token']
   end
 
+  test "logging in a logged in user resets the session, and the user remains logged in" do
+    log_in_as @user
+    old_session_id = session.id
+    assert is_logged_in?
+    log_in_as @user
+    assert is_logged_in?
+    assert_not_equal old_session_id, session.id
+  end
+
 end

@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   before_action :logged_in_user, only: [:destroy]
-  before_action :logged_out_user, except: [:destroy]
 
   def new
     respond_to do |format|

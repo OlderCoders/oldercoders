@@ -217,6 +217,16 @@ class AccountTest < ActiveSupport::TestCase
     assert_not @user_hugh.valid?
   end
 
+  test "password should not equal the username or email address, case insensitive" do
+    @accounts.each do |account|
+      assert account.valid?
+      account.password = account.email.upcase
+      assert_not account.valid?
+      account.password = account.username.upcase
+      assert_not account.valid?
+    end
+  end
+
   test "Arbitrary HTML should be stripped string attributes on save" do
     html = '<b><a href="http://foo.com/">foo</a></b><img src="bar.jpg"><script src="http://hackz.js"></script>'
     @accounts.each do |account|
