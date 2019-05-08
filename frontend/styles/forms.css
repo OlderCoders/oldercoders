@@ -46,6 +46,7 @@ label,
 	font-size: var(--font-size--medium);
 	font-weight: var(--font-weight--medium);
 	max-width: 100%;
+	margin-bottom: var(--baseline);
 }
 
 legend,
@@ -73,7 +74,6 @@ fieldset,
 		border-bottom: 1px solid var(--border-color);
 		color: var(--color-primary);
 		cursor: default;
-		display: inline-block;
 		float: left;
 		font-size: var(--font-size--large);
 		font-weight: var(--font-weight--extralight);
@@ -137,14 +137,14 @@ Form layouts
 /* Input singles */
 .input-field {
 	position: relative;
-	margin-bottom: var(--space-2);
+	margin-bottom: var(--space-3);
 }
 
 /* Input Groups */
 .input-group {
 	width: 100%;
 	display: flex;
-	margin-bottom: var(--space-2);
+	margin-bottom: var(--space-3);
 
 	+ .input-group {
 		margin-top: calc(var(--space-1) * -1);
