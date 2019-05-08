@@ -43,11 +43,9 @@ module CurrentUser
     @user = current_user if current_user.is_a? User
   end
 
-
   # Redirects to the current user.
   def redirect_to_current_user
-    redirect_to profile_url(username: current_user.username) and return unless current_user.username.blank?
-    flash[:notice] = t('account.profile.please_create')
+    redirect_to user_url(username: current_user.username) and return unless current_user.username.blank?
     redirect_to new_username_url
   end
 
@@ -77,11 +75,6 @@ module CurrentUser
   # Whether or not @user is the current user
   def current_account_profile?(user = @user)
     logged_in? && current_user?(user)
-  end
-
-  # Returns true if the user is logged in and has a profile set up, false otherwise.
-  def current_user_has_profile?
-    logged_in? && current_user.profile.present?
   end
 
   # Returns true if the user is logged in and has a username set, false otherwise.
