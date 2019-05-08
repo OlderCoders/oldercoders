@@ -1,3 +1,5 @@
+<%= component 'global/forms/errors', errors: @account.errors.full_messages %>
+
 <%= form_with model: @account, url: username_path, scope: :account, local: true do |f| %>
   <div class="input-field">
     <%= f.label(:username) %>
