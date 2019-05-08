@@ -12,6 +12,14 @@ en:
       update:
         success: Great!<br>With your username now set, take a moment to set up your profile.
 
+    relationships:
+      status:
+        self: That's you!
+        follow: Follow
+        following: Following
+        follow_user: Follow %{name}
+        unfollow_user: Unfollow %{name}
+
     profiles:
       edit:
         title: Edit your Profile

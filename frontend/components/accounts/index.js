@@ -1,2 +1,3 @@
-import './profiles';
-import './usernames';
+import "./profiles";
+import "./usernames";
+import "./relationships";

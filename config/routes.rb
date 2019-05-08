@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
     scope module: :accounts do
       resource :profile, only: %i[edit update]
+      resource :relationship, only: %i[create destroy]
     end
   end
 end

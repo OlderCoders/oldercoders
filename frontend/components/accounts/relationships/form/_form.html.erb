@@ -1,0 +1,57 @@
+<%
+  return nil if @current_user.blank?
+  detail_view = local_assigns.key?(:detail) && local_assigns[:detail]
+%>
+
+<% if current_user?(account) %>
+  <p class="badge btn--sm">
+    <%= t 'accounts.relationships.status.self' %>
+  </p>
+<% else %>
+  <% if current_user.following?(account) %>
+    <%# Unfollow Form %>
+    <%=
+      form_with(
+        url: relationship_url(username: account.username),
+        method: :delete,
+        html: {
+          id: "relationship_form_account_#{account.id}"
+        }
+      ) do |f|
+    %>
+      <%= hidden_field_tag(:is_user_detail_view, true, id: nil) if detail_view %>
+      <%= hidden_field_tag(:followee_id, account.id, id: nil) %>
+      <%= hidden_field_tag(:follower_id, current_user.id, id: nil) %>
+      <%=
+        f.button(
+          t('accounts.relationships.status.following'),
+          class: ['btn--secondary', (detail_view ? nil : 'btn--sm')].compact.join(' '),
+          title: t('accounts.relationships.status.unfollow_user', name: account.first_name),
+          'aria-label': t('accounts.relationships.status.unfollow_user', name: account.first_name)
+        )
+      %>
+    <% end %>
+  <% else %>
+    <%# Follow Form %>
+    <%=
+      form_with(
+        url: relationship_url(username: account.username),
+        html: {
+          id: "relationship_form_account_#{account.id}"
+        }
+      ) do |f|
+    %>
+      <%= hidden_field_tag(:is_user_detail_view, true, id: nil) if detail_view %>
+      <%= hidden_field_tag(:followee_id, account.id, id: nil) %>
+      <%= hidden_field_tag(:follower_id, current_user.id, id: nil) %>
+      <%=
+        f.button(
+          t('accounts.relationships.status.follow'),
+          class: ['btn--primary', (detail_view ? nil : 'btn--sm')].compact.join(' '),
+          title: t('accounts.relationships.status.follow_user', name: account.first_name),
+          'aria-label': t('accounts.relationships.status.follow_user', name: account.first_name)
+        )
+      %>
+    <% end %>
+  <% end %>
+<% end %>

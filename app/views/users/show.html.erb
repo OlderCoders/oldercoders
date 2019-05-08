@@ -1,9 +1,18 @@
 <% content_for :title, t('.title', name: @user.name, username: @user.username) %>
 
-<section class="container">
+<article class="container">
   <header>
     <h1>
       <%= @user.name %> <em>@<%= @user.username %></em>
     </h1>
   </header>
-</section>
+  <div class="body">
+    <section class="bio">
+      <%= @user.profile.bio %>
+    </section>
+
+    <section class="user-folow-status">
+      <%= c 'accounts/relationships/form', account: @user, detail: true %>
+    </section>
+  </div>
+</article>
