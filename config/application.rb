@@ -51,5 +51,10 @@ module OlderCoders
       end
       ReservedWords.all = [ReservedWords::BASE_WORDS + top_routes].flatten.compact.uniq
     end
+
+    # Prevent extra markup in form fields with errors
+    config.action_view.field_error_proc = proc { |html_tag, _instance|
+      html_tag
+    }
   end
 end

@@ -1,0 +1,66 @@
+<%= component 'global/forms/errors', errors: @user.profile.errors.full_messages %>
+
+<%= form_with model: @user.profile, url: profile_path, scope: :account_profile, local: true do |f| %>
+  <fieldset>
+    <legend><%= t 'accounts.profiles.edit.the_basics' %></legend>
+    <div class="input-field">
+      <%= f.label(:birthday) %>
+      <div class="input-group">
+        <%= birthday_selector f %>
+      </div>
+    </div>
+    <div class="input-field">
+      <%= f.label(:location) %>
+      <%= f.text_field :location, maxlength: 128, id: 'profile-location', data: {
+        'app-id': ENV['ALGOLIA_APPLICATION_ID'],
+        'api-key': ENV['ALGOLIA_API_KEY'],
+      } %>
+    </div>
+    <div class="input-field">
+      <%= f.label(:bio) %>
+      <%= f.text_area :bio, maxlength: 255 %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><%= t 'accounts.profiles.edit.around_the_web' %></legend>
+    <div class="input-field">
+      <%= f.label(:twitter_username) %>
+      <div class="input-group">
+        <span class="input-addon">@</span>
+        <%= f.text_field :twitter_username, maxlength: 128, autocorrect: false %>
+      </div>
+    </div>
+    <div class="input-field">
+      <%= f.label(:github_username) %>
+      <div class="input-group">
+        <span class="input-addon">@</span>
+        <%= f.text_field :github_username, maxlength: 128, autocorrect: false %>
+      </div>
+    </div>
+    <div class="input-field">
+      <%= f.label(:website_url) %>
+      <%= f.url_field :website_url, maxlength: 128 %>
+    </div>
+    <div class="input-field">
+      <%= f.label(:employer_url) %>
+      <%= f.url_field :employer_url, maxlength: 128 %>
+    </div>
+    <div class="input-field">
+      <%= f.label(:stackoverflow_url) %>
+      <%= f.url_field :stackoverflow_url, maxlength: 128 %>
+    </div>
+    <div class="input-field">
+      <%= f.label(:facebook_url) %>
+      <%= f.url_field :facebook_url, maxlength: 128 %>
+    </div>
+    <div class="input-field">
+      <%= f.label(:linkedin_url) %>
+      <%= f.url_field :linkedin_url, maxlength: 128 %>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.button t('accounts.usernames.new.set_username'), class: 'btn--primary' %>
+  </div>
+<% end %>

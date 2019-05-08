@@ -109,6 +109,14 @@ class Account::ProfileTest < ActiveSupport::TestCase
     assert @profile.valid?
   end
 
+  test "twitter username gets cleaned up by trimming and stripping the @ symbol" do
+    username = '   @username  '
+    @profile.twitter_username = username
+    @profile.save
+    assert_equal @profile.reload.twitter_username, username.squish.delete('@')
+    assert @profile.valid?
+  end
+
   test "twitter username should not be too long" do
     @profile.twitter_username = "a" * 129
     assert_not @profile.valid?
@@ -116,6 +124,14 @@ class Account::ProfileTest < ActiveSupport::TestCase
 
   test "github username can be blank" do
     @profile.github_username = '   '
+    assert @profile.valid?
+  end
+
+  test "github username gets cleaned up by trimming and stripping the @ symbol" do
+    username = '   @username  '
+    @profile.github_username = username
+    @profile.save
+    assert_equal @profile.reload.github_username, username.squish.delete('@')
     assert @profile.valid?
   end
 

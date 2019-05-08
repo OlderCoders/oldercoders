@@ -1,1 +1,2 @@
-import './usernames/username_form';
+import './profiles';
+import './usernames';

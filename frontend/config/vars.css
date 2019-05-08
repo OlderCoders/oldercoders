@@ -85,10 +85,15 @@
 
 	/* Forms */
 	--form-padding:       	var(--baseline) var(--space-1);
-	--input-height:        4.4rem;
+	--input-height:         4.4rem;
 	--input-border-width:	1px;
 	--input-addon-bg-color:	var(--color-white);
 	--input-addon-color:	var(--color-putty);
+
+	/* Allows for 4 lines on textareas - 1.5em line height * 4 */
+	--textarea-height:      6em;
+
+	--select-padding:       var(--baseline) var(--space-4) var(--baseline) var(--space-1);
 
 	/* Box Shadows */
 

@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    attributes:
+      account/profile:
+        twitter_username: Twitter Username
+        github_username: GitHub Username
+        website_url: Website URL
+        employer_url: Employer URL
+        facebook_url: Facebook URL
+        stackoverflow_url: Stack Overflow URL
+        behance_url: Behance URL
+        linkedin_url: LinkedIn URL
+        dribbble_url: Dribbble URL
+        medium_url: Medium URL
+        gitlab_url: GitLab URL

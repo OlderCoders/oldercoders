@@ -24,5 +24,9 @@ Rails.application.routes.draw do
 
   scope '/:username' do
     resource :user, only: %i[show edit update destroy], path: '/'
+
+    scope module: :accounts do
+      resource :profile, only: %i[edit update]
+    end
   end
 end

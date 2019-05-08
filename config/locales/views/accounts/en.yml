@@ -14,6 +14,11 @@ en:
 
     profiles:
       edit:
+        title: Edit your Profile
+        the_basics: The Basics
+        around_the_web: Around The Web
+
+
         hints:
           username: '
             Letters, numbers, and underscores only.

@@ -15,10 +15,12 @@ class Account::Profile < ApplicationRecord
   validates :bio, length: { maximum: 255 }
   validates :twitter_username,
             length: { maximum: 128 },
+            format: /\A\w+\Z/,
             uniqueness: { allow_nil: true },
             if: :twitter_username_changed?
   validates :github_username,
             length: { maximum: 128 },
+            format: /\A[A-Za-z0-9\-]+\Z/,
             uniqueness: { allow_nil: true },
             if: :github_username_changed?
   validates :website_url, :employer_url,
@@ -65,10 +67,18 @@ class Account::Profile < ApplicationRecord
     end
 
     def verify_twitter_username
-      self.twitter_username = nil if twitter_username.blank?
+      if twitter_username.blank?
+        self.twitter_username = nil
+        return
+      end
+      self.twitter_username = twitter_username.squish.delete '@'
     end
 
     def verify_github_username
-      self.github_username = nil if github_username.blank?
+      if github_username.blank?
+        self.github_username = nil
+        return
+      end
+      self.github_username = github_username.squish.delete '@'
     end
 end

@@ -2,3 +2,6 @@ en:
   users:
     show:
       title: '%{name} (@%{username}) on Older Coders'
+
+    edit:
+      title: 'Editing %{name} @{username} on Older Coders'
