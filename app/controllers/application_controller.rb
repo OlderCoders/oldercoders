@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   include CurrentUser
   include EnforceUserProfile
   include Errorable
+  include UnobtrusiveJavascriptable
 
 end

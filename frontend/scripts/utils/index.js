@@ -1,4 +1,5 @@
 import InputBinding from "./input-binding";
+import debounce from "./debounce";
 
 class Utils {
   constructor() {
@@ -21,4 +22,4 @@ class Utils {
 const utils = new Utils();
 Object.freeze(utils);
 
-export default Utils;
+export { Utils, debounce };

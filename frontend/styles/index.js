@@ -10,3 +10,4 @@ import "./typography.css";
 import "./container.css";
 import "./forms.css";
 import "./buttons.css";
+import "./nprogress.css";

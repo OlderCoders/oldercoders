@@ -37,7 +37,6 @@ class Accounts::RelationshipsController < ApplicationController
     # TODO: Set up a mailer for notifying users of new followers
     respond_to do |format|
       format.html { redirect_to user_url }
-      format.js   { render :status }
       format.json { render :status }
     end
 
@@ -51,7 +50,6 @@ class Accounts::RelationshipsController < ApplicationController
     current_user.unfollow(@user)
     respond_to do |format|
       format.html { redirect_to user_url }
-      format.js   { render :status }
       format.json { render :status }
     end
   end

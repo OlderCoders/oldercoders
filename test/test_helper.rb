@@ -66,6 +66,16 @@ class ActionDispatch::IntegrationTest
   def log_out
     get logout_path
   end
+
+  def ujs_request
+    {
+      as: :json,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-Requested-By': 'UJS'
+      }
+    }
+  end
 end
 
 # Sampled from http://approache.com/blog/testing-rails-across-time-zones/
