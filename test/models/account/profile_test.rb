@@ -44,6 +44,21 @@ class Account::ProfileTest < ActiveSupport::TestCase
     assert_not @profile.valid?
   end
 
+  test "Coding Since can be blank" do
+    @profile.coding_since = nil
+    assert @profile.valid?
+  end
+
+  test "Coding Since can the same year as a birthday" do
+    @profile.coding_since = @profile.birthday.beginning_of_year
+    assert @profile.valid?
+  end
+
+  test "Coding Since cannot be earlier than birthday birthday" do
+    @profile.coding_since = @profile.birthday.beginning_of_year - 1.year
+    assert_not @profile.valid?
+  end
+
   test "website urls can be blank" do
     @all_url_props.each do |url|
       @profile.send "#{url}=", '   '

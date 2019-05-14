@@ -10,6 +10,18 @@
       </div>
     </div>
     <div class="input-field">
+    <label class="control">
+        <%= f.check_box(:display_age) %>
+        <span><%= t 'accounts.profiles.edit.display_age' %></span>
+      </label>
+    </div>
+    <div class="input-field">
+      <%= f.label(:coding_since) %>
+      <div class="input-group">
+        <%= coding_since_selector f %>
+      </div>
+    </div>
+    <div class="input-field">
       <%= f.label(:location) %>
       <%= f.text_field :location, maxlength: 128, id: 'profile-location', data: {
         'app-id': ENV['ALGOLIA_APPLICATION_ID'],
@@ -61,6 +73,6 @@
   </fieldset>
 
   <div class="actions">
-    <%= f.button t('accounts.usernames.new.set_username'), class: 'btn--primary' %>
+    <%= f.button t('accounts.profiles.edit.save_your_profile'), class: 'btn--primary' %>
   </div>
 <% end %>

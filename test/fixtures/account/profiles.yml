@@ -3,7 +3,8 @@
 michael:
   account: michael
   birthday: 1974-04-15
-  display_birthday: true
+  display_age: true
+  coding_since: 1980-01-01
   website_url: https://kimili.com
   bio: <%= Faker::Movies::StarWars.quote %>
   employer_name:
@@ -22,7 +23,8 @@ michael:
 hugh:
   account: hugh
   birthday: 1960-04-15
-  display_birthday: false
+  display_age: false
+  coding_since: 1970-01-01
   website_url: https://rebelalliance.net
   bio: <%= Faker::Movies::StarWars.quote %>
   employer_name:

@@ -25,10 +25,14 @@ en:
         title: Edit your Profile
         the_basics: The Basics
         around_the_web: Around The Web
-
+        display_age: Show your age on your profile. You can be proud of all you've accomplished.
+        save_your_profile: Save Your Profile
 
         hints:
           username: '
             Letters, numbers, and underscores only.
             Creates your Older Coders URL: <em>%{url}<span class="username">%{username}</span></em>.'
           website: Your home page. Should be a valid website address, such as <em>https://oldercoders.com</em>
+
+      update:
+        has_been_updated: Your profile has been updated.

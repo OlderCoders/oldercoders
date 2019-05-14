@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_144837) do
+ActiveRecord::Schema.define(version: 2019_05_14_214793) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_16_144837) do
   create_table "account_profiles", force: :cascade do |t|
     t.integer "account_id", null: false
     t.date "birthday"
-    t.boolean "display_birthday", default: true
+    t.boolean "display_age", default: true
     t.string "location"
     t.json "latlon"
     t.string "bio", limit: 255
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_04_16_144837) do
     t.string "gitlab_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "coding_since"
     t.index ["account_id"], name: "index_account_profiles_on_account_id"
   end
 

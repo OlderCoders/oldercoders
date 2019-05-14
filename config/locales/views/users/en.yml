@@ -2,6 +2,14 @@ en:
   users:
     show:
       title: '%{name} (@%{username}) on Older Coders'
+      age: '<em>%{age}</em> years old'
+      hide_age:
+        - Older than the wind
+        - Older than dirt
+        - Older than the hills
+      coding_since: Coding since %{year}
+      coding_since_age: Started Coding at age %{age}
+
 
     edit:
       title: 'Editing %{name} @{username} on Older Coders'

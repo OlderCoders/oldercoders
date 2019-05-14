@@ -13,7 +13,7 @@ class Accounts::ProfilesController < ApplicationController
     if @user.profile.valid?
       unless @user.errors.any?
         flash[:notice] = t('.has_been_updated')
-        redirect_to edit_profile_url and return
+        redirect_to user_url and return
       end
     end
     render 'edit'
@@ -26,6 +26,8 @@ class Accounts::ProfilesController < ApplicationController
         .require(:account_profile)
         .permit(
           :birthday,
+          :display_age,
+          :coding_since,
           :location,
           :bio,
           :twitter_username,

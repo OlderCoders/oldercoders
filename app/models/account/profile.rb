@@ -9,6 +9,7 @@ class Account::Profile < ApplicationRecord
   belongs_to :account, inverse_of: :profile, foreign_key: 'account_id', touch: true
 
   validate :birthday_should_within_age_range
+  validate :coding_since_should_not_be_earlier_than_birthday
 
   validates :birthday, presence: true, on: :update
   validates :location, length: { maximum: 128 }
@@ -64,6 +65,12 @@ class Account::Profile < ApplicationRecord
 
       errors.add(:birthday, 'is too recent') if birthday > Time.zone.today - 21.years
       errors.add(:birthday, 'is too long ago. We\'re old, but come on.') if birthday < Time.zone.today - 121.years
+    end
+
+    def coding_since_should_not_be_earlier_than_birthday
+      return if birthday.blank? or coding_since.blank?
+
+      errors.add(:coding_since, 'can\'t be before your birthday') if birthday.beginning_of_year > coding_since.beginning_of_year
     end
 
     def verify_twitter_username
