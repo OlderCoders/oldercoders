@@ -1,6 +1,6 @@
 class Accounts::ProfilesController < ApplicationController
 
-  include RequestedUser
+  include CorrectUser
 
   before_action :logged_in_user
   before_action :current_account_profile?
