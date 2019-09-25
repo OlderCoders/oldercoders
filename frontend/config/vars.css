@@ -13,6 +13,7 @@
 	--color-accent: #E040FB;
 
 	--color-error: #cc0000;
+	--color-warning: #E9C809;
 
 	--color-white: #fff;
 	--color-black: #000;
@@ -99,5 +100,9 @@
 
 	--shadow-default:      0 1px 2px rgba(0,0,0,.15);
 	--shadow-subtle:       0 1px 1px rgba(0,0,0,.04);
+
+
+	/* Alerts */
+	--alert--max-width:    44rem;
 
 }

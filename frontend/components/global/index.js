@@ -1,1 +1,2 @@
-import './forms/errors';
+import "./alerts";
+import "./forms/errors";
