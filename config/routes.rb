@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :accounts
   root 'sessions#new', format: 'html'
 
   # Login/Logout

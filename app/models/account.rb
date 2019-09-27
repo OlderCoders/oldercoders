@@ -1,11 +1,8 @@
 class Account < ApplicationRecord
   include TranslateEnum
   include Tokenable
-  include Activatable
   include Digestable
   include Friendable
-
-  attr_accessor :email_confirmation_token
 
   enum role: {
     user:      0,
@@ -18,10 +15,8 @@ class Account < ApplicationRecord
 
   has_one :profile, class_name: 'Account::Profile', inverse_of: :account, foreign_key: 'account_id', dependent: :destroy
 
-  before_save          :sanitize_inputs
-  before_save          :clean_username
-  before_validation    :clean_email
-  after_create         :create_profile
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
 
   VALID_ACCOUNT_TYPES = %w[User].freeze
   VALID_USERNAME = /\A\w+\Z/.freeze # Case insensitive match a-z, 0-9 and underscores
@@ -40,39 +35,10 @@ class Account < ApplicationRecord
             format: { with: VALID_USERNAME },
             not_reserved_word: { field: :username }
 
-  validates :new_email,
-            length: { maximum: 255 },
-            uniqueness: { case_sensitive: false },
-            format: { with: VALID_EMAIL },
-            allow_blank: true,
-            new_email_unique: true
-
-  def authenticated?(attribute, token)
-    digest = send("#{attribute}_digest")
-    return false if digest.nil?
-
-    BCrypt::Password.new(digest).is_password?(token)
-  end
-
-  # Clears out pending email changes
-  def destroy_email_change_token
-    self.email_confirmation_token = nil
-    update(
-      new_email: nil,
-      email_confirmation_digest: nil,
-      email_confirmation_sent_at: nil
-    )
-    reload
-  end
-
-  # Confirms a pending email update if there's a new_email value
-  # by promoting that value to self.email
-  def confirm_pending_email_change
-    return if new_email.nil?
-
-    update email: new_email
-    destroy_email_change_token
-  end
+  before_save          :sanitize_inputs
+  before_save          :clean_username
+  before_validation    :clean_email
+  after_create         :create_profile
 
   private
 
@@ -82,12 +48,6 @@ class Account < ApplicationRecord
 
     def clean_email
       self.email = email.downcase.strip if email.present?
-      self.new_email = new_email.downcase.strip if new_email.present?
-    end
-
-    def create_email_confirmation_token
-      self.email_confirmation_token = new_token
-      update email_confirmation_digest: digest(email_confirmation_token)
     end
 
 end
