@@ -1,8 +1,8 @@
 results = [
   {
-    target: "#relationship_form_account_#{ @user.id }",
+    target: "#relationship_form_account_#{ @account.id }",
     insertion: "replace",
-    html: component('accounts/relationships/form', account: @user, detail: params.key?(:is_user_detail_view)).squish
+    html: component('accounts/relationships/form', account: @account, detail: params.key?(:is_account_detail_view)).squish
   }
 ]
 

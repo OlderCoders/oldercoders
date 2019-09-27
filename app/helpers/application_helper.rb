@@ -1,3 +1,3 @@
 module ApplicationHelper
-  include CurrentUser
+  include CurrentAccount
 end

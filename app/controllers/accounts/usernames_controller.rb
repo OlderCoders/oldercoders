@@ -1,7 +1,7 @@
 class Accounts::UsernamesController < ApplicationController
-  before_action :logged_in_user
-  before_action :current_user_as_account
-  before_action :usernameless_user
+  before_action :logged_in_account
+  before_action :current_account_as_account
+  before_action :usernameless_account
 
   # GET
   # new_username
@@ -18,7 +18,7 @@ class Accounts::UsernamesController < ApplicationController
     @account.update(username_params)
     if @account.valid?
       flash[:notice] = t('.success')
-      redirect_to user_url username: @account.username
+      redirect_to account_url username: @account.username
     else
       @suppress_nav = true
       @suppress_footer = true
@@ -28,8 +28,8 @@ class Accounts::UsernamesController < ApplicationController
 
   private
 
-    def usernameless_user
-      redirect_to user_url(username: @account.username) and return if @account.username.present?
+    def usernameless_account
+      redirect_to account_url(username: @account.username) and return if @account.username.present?
     end
 
     def username_params

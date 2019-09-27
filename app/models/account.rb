@@ -5,9 +5,9 @@ class Account < ApplicationRecord
   include Friendable
 
   enum role: {
-    user:      0,
-    admin:     1,
-    disabled:  2,
+    user: 0,
+    admin: 1,
+    disabled: 2
   }
   translate_enum :role
 
@@ -18,14 +18,17 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  VALID_ACCOUNT_TYPES = %w[User].freeze
   VALID_USERNAME = /\A\w+\Z/.freeze # Case insensitive match a-z, 0-9 and underscores
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
   validates :first_name, presence: true, length: { maximum: 255 }
   validates :last_name, presence: true, length: { maximum: 255 }
 
-  validates :type, inclusion: { in: VALID_ACCOUNT_TYPES }
+  validates :email,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { maximum: 255 },
+            format: { with: VALID_EMAIL }
 
   validates :username,
             presence: true,
@@ -34,6 +37,8 @@ class Account < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: { with: VALID_USERNAME },
             not_reserved_word: { field: :username }
+
+  validate :password_should_not_equal_email_or_username
 
   before_save          :sanitize_inputs
   before_save          :clean_username
@@ -48,6 +53,14 @@ class Account < ApplicationRecord
 
     def clean_email
       self.email = email.downcase.strip if email.present?
+    end
+
+    def password_should_not_equal_email_or_username
+      return unless password.present? &&
+                    ((email.present? && password.casecmp(email).zero?) ||
+                    (username.present? && password.casecmp(username).zero?))
+
+      errors.add(:password, I18n.t('errors.messages.password.as_account_id'))
     end
 
 end

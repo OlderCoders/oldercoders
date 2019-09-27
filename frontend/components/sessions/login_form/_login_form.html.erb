@@ -1,4 +1,4 @@
-<%= component 'global/forms/errors', errors: @user.errors.full_messages, header: @error_header if @user.present? %>
+<%= component 'global/forms/errors', errors: @account.errors.full_messages, header: @error_header if @account.present? %>
 
 <%= form_for(:session, url: login_path) do |f| %>
   <div class="input-field">

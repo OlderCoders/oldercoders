@@ -18,23 +18,23 @@ module Friendable
     has_many :followers, through: :passive_relationships, source: :follower
   end
 
-  def follow(other_user)
-    return if following? other_user
-    following << other_user
-    # TODO - notify followed user, via mail and notificaiton mechanism
+  def follow(other_account)
+    return if following? other_account
+    following << other_account
+    # TODO - notify followed account, via mail and notificaiton mechanism
   end
 
-  def unfollow(other_user)
-    following.delete other_user
-    other_user.touch
+  def unfollow(other_account)
+    following.delete other_account
+    other_account.touch
   end
 
-  # Returns true if the current user is following the other user.
-  def following?(other_user)
-    following.pluck(:id).include? other_user.id
+  # Returns true if the current account is following the other account.
+  def following?(other_account)
+    following.pluck(:id).include? other_account.id
   end
 
-  # "Friends" are mutual followers, a bidirectional follower relationship between two users.
+  # "Friends" are mutual followers, a bidirectional follower relationship between two accounts.
   def friend_ids
     query = self.class.friend_ids_query(id)
     @friend_ids ||= self.class.connection.exec_query(query).rows.flatten

@@ -122,6 +122,7 @@ class ReservedWords
     mega
     settings
     account
+    accounts
     dashboard
     dash
     me

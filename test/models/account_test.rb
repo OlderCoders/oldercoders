@@ -3,9 +3,9 @@ require 'test_helper'
 class AccountTest < ActiveSupport::TestCase
 
   def setup
-    @user      = accounts(:michael)
-    @user_hugh = accounts(:hugh)
-    @accounts  = [@user, @user_hugh]
+    @account      = accounts(:michael)
+    @account_hugh = accounts(:hugh)
+    @accounts     = [@account, @account_hugh]
   end
 
   test "should be valid" do
@@ -111,8 +111,8 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "email should be present on user, but not necessarily on ensemble" do
-    @user.email = "     "
-    assert_not @user.valid?
+    @account.email = "     "
+    assert_not @account.valid?
   end
 
   test "email should not be too long" do
@@ -150,7 +150,7 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "email validation should reject invalid addresses" do
-    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.foo@bar_baz.com foo@bar+baz.com]
+    invalid_addresses = %w[account@example,com account_at_foo.org account.name@example.foo@bar_baz.com foo@bar+baz.com]
     invalid_addresses.each do |invalid_address|
       @accounts.each do |account|
         # Check both email and pending email
@@ -197,24 +197,24 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
-  test "email addresses for users should be unique" do
-    duplicate_user = @user.dup
-    duplicate_user.email = @user.email.upcase
-    assert_not duplicate_user.valid?
+  test "email addresses for accounts should be unique" do
+    duplicate_account = @account.dup
+    duplicate_account.email = @account.email.upcase
+    assert_not duplicate_account.valid?
   end
 
-  test "pending email addresses for users should be unique" do
-    # make sure that the new email doesn't match another user's email
-    @user_hugh.new_email = @user.email.upcase
-    assert_not @user_hugh.valid?
+  test "pending email addresses for accounts should be unique" do
+    # make sure that the new email doesn't match another account's email
+    @account_hugh.new_email = @account.email.upcase
+    assert_not @account_hugh.valid?
 
     # Make sure pending addresses are also unique amongst themselves
     pending_address = "luke@rebelalliance.com"
-    @user.new_email = pending_address
-    @user.save
-    assert @user.valid?
-    @user_hugh.new_email = pending_address
-    assert_not @user_hugh.valid?
+    @account.new_email = pending_address
+    @account.save
+    assert @account.valid?
+    @account_hugh.new_email = pending_address
+    assert_not @account_hugh.valid?
   end
 
   test "password should not equal the username or email address, case insensitive" do
@@ -246,19 +246,19 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
-  test "Creating a User should create a Profile" do
+  test "Creating an Account should create a Profile" do
     assert_difference 'Account::Profile.count', 1 do
-      User.create first_name: 'Luke', last_name: 'Skywalker', password: 'rebelyellers', email: 'luke@rebelalliance.org'
+      Account.create first_name: 'Luke', last_name: 'Skywalker', password: 'rebelyellers', email: 'luke@rebelalliance.org'
     end
   end
 
-  test "Associated Profile should be destroyed when destroying User" do
+  test "Associated Profile should be destroyed when destroying Account" do
     assert_difference 'Account::Profile.count', @accounts.count * -1 do
       @accounts.each(&:destroy)
     end
   end
 
-  test "associated account should be destroyed when destroying User" do
+  test "associated account should be destroyed when destroying Account" do
     assert_difference 'Account.count', @accounts.count * -1 do
       @accounts.each(&:destroy)
     end

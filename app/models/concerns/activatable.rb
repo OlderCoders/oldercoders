@@ -13,7 +13,7 @@ module Activatable
       update activation_digest: digest(activation_token)
       reload
     end
-    # UserMailer.account_activation(self).deliver_now
+    # AccountMailer.account_activation(self).deliver_now
   end
 
   private

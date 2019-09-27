@@ -1,5 +1,5 @@
 en:
-  users:
+  accounts:
     show:
       title: '%{name} (@%{username}) on Older Coders'
       age: '<em>%{age}</em> years old'

@@ -1,28 +1,30 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 michael:
-  first_name:      Michael
-  last_name:       Bester
-  email:           michael@kimili.com
-  username:        bester
-  type:            User
-  role:            :admin
-  password_digest: <%= Account.digest('password') %>
-  activated:       true
-  activated_at:    <%= Time.current.to_datetime %>
-  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+  first_name:         Michael
+  last_name:          Bester
+  email:              michael@kimili.com
+  username:           bester
+  type:               Account
+  role:               :admin
+  encrypted_password: <%= Account.digest('password') %>
+  confirmation_token: <%= Account.digest('confirmation') %>
+  confirmed_at:       <%= Time.current.to_datetime %>
+  confirmation_sent_at: <%= Time.current.to_datetime %>
+  time_zone:          <%= TimeZoneHelper.random_time_zone %>
 
 hugh:
-  first_name:      Hugh
-  last_name:       Jass
-  email:           hugh@jass.com
-  username:        rumpus
-  type:            User
-  role:            :user
-  password_digest: <%= Account.digest('password') %>
-  activated:       true
-  activated_at:    <%= Time.current.to_datetime %>
-  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+  first_name:         Hugh
+  last_name:          Jass
+  email:              hugh@jass.com
+  username:           rumpus
+  type:               Account
+  role:               :user
+  encrypted_password: <%= Account.digest('password') %>
+  confirmation_token: <%= Account.digest('confirmation') %>
+  confirmed_at:       <%= Time.current.to_datetime %>
+  confirmation_sent_at: <%= Time.current.to_datetime %>
+  time_zone:          <%= TimeZoneHelper.random_time_zone %>
 
 
 luke:
@@ -30,11 +32,12 @@ luke:
   last_name:       the Dog
   email:           luke@dogs.com
   username:        mister_bat_ears
-  type:            User
+  type:            Account
   role:            :user
-  password_digest: <%= Account.digest('password') %>
-  activated:       true
-  activated_at:    <%= Time.current.to_datetime %>
+  encrypted_password: <%= Account.digest('password') %>
+  confirmation_token: <%= Account.digest('confirmation') %>
+  confirmed_at:    <%= Time.current.to_datetime %>
+  confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
 
 igor:
@@ -42,11 +45,13 @@ igor:
   last_name:       Igor
   email:           humpman@frankensteinscastle.com
   username:        hunchback_man
-  type:            User
+  type:            Account
   role:            :user
-  password_digest: <%= Account.digest('password') %>
-  activated:       false
-  time_zone:       <%= TimeZoneHelper.random_time_zone %>
+  encrypted_password: <%= Account.digest('password') %>
+  confirmation_token: nil
+  confirmed_at:       nil
+  confirmation_sent_at: <%= Time.current.to_datetime %>
+  time_zone:            <%= TimeZoneHelper.random_time_zone %>
 
   # Patty has no profile associated
 patty:
@@ -54,11 +59,12 @@ patty:
   last_name:       Patty
   email:           no_profile@patty.com
   username:        patty
-  type:            User
+  type:            Account
   role:            :user
-  password_digest: <%= Account.digest('password') %>
-  activated:       true
-  activated_at:    <%= Time.current.to_datetime %>
+  encrypted_password: <%= Account.digest('password') %>
+  confirmation_token: <%= Account.digest('confirmation') %>
+  confirmed_at:       <%= Time.current.to_datetime %>
+  confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
 
 # Inigo represents an invited account - one which doesn't yet have a pw, username, nor profile
@@ -66,9 +72,11 @@ inigo:
   first_name:      Invited
   last_name:       Inigo
   email:           inigo@example.com
-  type:            User
+  type:            Account
   role:            :user
-  activated:       false
+  confirmation_token: nil
+  confirmed_at:       nil
+  confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
 
 # umberto has no username nor profile associated
@@ -76,9 +84,10 @@ umberto:
   first_name:      Usernameless
   last_name:       Umberto
   email:           umberto@example.com
-  type:            User
+  type:            Account
   role:            :user
-  password_digest: <%= Account.digest('password') %>
-  activated:       true
-  activated_at:    <%= Time.current.to_datetime %>
+  encrypted_password: <%= Account.digest('password') %>
+  confirmation_token: <%= Account.digest('confirmation') %>
+  confirmed_at:       <%= Time.current.to_datetime %>
+  confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>

@@ -4,37 +4,37 @@ module Authenticatable
   included do
   end
 
-  # Logs in the given user
-  def log_in(user)
+  # Logs in the given account
+  def log_in(account)
     if session.present?
       old_session_values = session.to_hash
       reset_session
       session.update(old_session_values)
     end
-    session[:user_id] = user.id
+    session[:account_id] = account.id
   end
 
-  # Logs the current user out
+  # Logs the current account out
   def log_out
-    forget(current_user)
-    @current_user = nil
+    forget(current_account)
+    @current_account = nil
     return if session.blank?
-    session.delete(:user_id)
-    session.delete(:forwarding_url) # In case a user didn't end up at their forwarding URL in this session
+    session.delete(:account_id)
+    session.delete(:forwarding_url) # In case a account didn't end up at their forwarding URL in this session
     reset_session
   end
 
-  # Remembers the user in a persistent session
-  def remember(user)
-    user.remember
-    cookies.permanent.signed[:user_id] = user.id
-    cookies.permanent[:remember_token] = user.remember_token
+  # Remembers the account in a persistent session
+  def remember(account)
+    account.remember
+    cookies.permanent.signed[:account_id] = account.id
+    cookies.permanent[:remember_token] = account.remember_token
   end
 
-  # Properly negate all aspects of a user's remember cookie
-  def forget(user)
-    user.forget
-    cookies.delete(:user_id)
+  # Properly negate all aspects of a account's remember cookie
+  def forget(account)
+    account.forget
+    cookies.delete(:account_id)
     cookies.delete(:remember_token)
   end
 

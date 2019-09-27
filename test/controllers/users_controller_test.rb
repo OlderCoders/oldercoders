@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionDispatch::IntegrationTest
+class AccountsControllerTest < ActionDispatch::IntegrationTest
 
 
 end

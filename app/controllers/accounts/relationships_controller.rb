@@ -1,13 +1,13 @@
 class Accounts::RelationshipsController < ApplicationController
 
-  include RequestedUser
+  include RequestedAccount
 
-  before_action :logged_in_user
+  before_action :logged_in_account
 
   # GET
   # account_following
   #
-  # The view for seeing who a user is following
+  # The view for seeing who a account is following
   # def following
   #   @accounts = @account.following.page(params[:page])
   #   respond_to do |format|
@@ -19,7 +19,7 @@ class Accounts::RelationshipsController < ApplicationController
   # GET
   # account_followers
   #
-  # The view for seeing a list of a user's followers
+  # The view for seeing a list of a account's followers
   # def followers
   #   @accounts = @account.followers.page(params[:page])
   #   respond_to do |format|
@@ -33,10 +33,10 @@ class Accounts::RelationshipsController < ApplicationController
   #
   # Sets up a following/follower relationship
   def create
-    current_user.follow(@user)
-    # TODO: Set up a mailer for notifying users of new followers
+    current_account.follow(@account)
+    # TODO: Set up a mailer for notifying accounts of new followers
     respond_to do |format|
-      format.html { redirect_to user_url }
+      format.html { redirect_to account_url }
       format.json { render :status }
     end
 
@@ -47,9 +47,9 @@ class Accounts::RelationshipsController < ApplicationController
   #
   # Deletes a following/follower relationship
   def destroy
-    current_user.unfollow(@user)
+    current_account.unfollow(@account)
     respond_to do |format|
-      format.html { redirect_to user_url }
+      format.html { redirect_to account_url }
       format.json { render :status }
     end
   end

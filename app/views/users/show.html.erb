@@ -1,39 +1,39 @@
-<% content_for :title, t('.title', name: @user.name, username: @user.username) %>
+<% content_for :title, t('.title', name: @account.name, username: @account.username) %>
 
 <article class="container">
   <header class="vcard">
     <h1 class="fn">
-      <%= @user.name %>
+      <%= @account.name %>
     </h1>
 
     <p>
       <span class="age">
-        <% if @user.profile.display_age? and @user.profile.birthday.present?  %>
-          <%= t('.age', age: age(@user.profile.birthday)).html_safe %>
+        <% if @account.profile.display_age? and @account.profile.birthday.present?  %>
+          <%= t('.age', age: age(@account.profile.birthday)).html_safe %>
         <% else %>
           <%= t('.hide_age').sample %>
         <% end %>
       </span>
-      <% if @user.profile.coding_since.present? %>
+      <% if @account.profile.coding_since.present? %>
         <span class="age">
-          <%= t('.coding_since', year: @user.profile.coding_since.in_time_zone.to_s(:year)) %>
+          <%= t('.coding_since', year: @account.profile.coding_since.in_time_zone.to_s(:year)) %>
         </span>
       <% end %>
     </p>
-    <% if @user.profile.location.present? %>
+    <% if @account.profile.location.present? %>
       <p class="location adr">
-        <%= @user.profile.location %>
+        <%= @account.profile.location %>
       </p>
     <% end %>
   </header>
 
   <div class="body">
     <section class="bio">
-      <%= @user.profile.bio %>
+      <%= @account.profile.bio %>
     </section>
 
-    <section class="user-folow-status">
-      <%= c 'accounts/relationships/form', account: @user, detail: true %>
+    <section class="account-folow-status">
+      <%= c 'accounts/relationships/form', account: @account, detail: true %>
     </section>
   </div>
 </article>

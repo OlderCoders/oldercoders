@@ -17,3 +17,6 @@ en:
 
   errors:
     not_available: is not available
+    messages:
+      password:
+        as_account_id: You can't set your password to be the same as your email address or username.

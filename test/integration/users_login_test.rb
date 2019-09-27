@@ -1,11 +1,11 @@
 require 'test_helper'
 
-class UsersLoginTest < ActionDispatch::IntegrationTest
+class AccountsLoginTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = accounts(:michael)
-    @user_no_username = accounts(:umberto)
-    @user_inactive   = accounts(:igor)
+    @account = accounts(:michael)
+    @account_no_username = accounts(:umberto)
+    @account_inactive   = accounts(:igor)
   end
 
   test "login with invalid information" do
@@ -27,18 +27,18 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     post login_path, params: {
       session: {
-        email: @user.email,
+        email: @account.email,
         password: "password"
       }
     }
     assert is_logged_in?
-    assert_redirected_to user_path(username: @user.username)
+    assert_redirected_to account_path(username: @account.username)
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'accounts/show'
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
-    # Simulate a user clicking logout in a second window.
+    # Simulate a account clicking logout in a second window.
     delete logout_path
     follow_redirect!
     # TODO: Assert select logged out state items on home page
@@ -47,8 +47,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with valid information without having a username set up" do
     get login_path
     assert_template 'sessions/new'
-    log_in_as @user_no_username
-    assert_nil @user_no_username.username
+    log_in_as @account_no_username
+    assert_nil @account_no_username.username
     assert is_logged_in?
     # Should be redirected to profile creation
     assert_redirected_to new_username_path
@@ -57,12 +57,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  test "login as an inactive user" do
+  test "login as an inactive account" do
     get login_path
     assert_template 'sessions/new'
     post login_path, params: {
       session: {
-        email: @user_inactive.email,
+        email: @account_inactive.email,
         password: 'password'
       }
     }
@@ -72,20 +72,20 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with remembering" do
-    log_in_as(@user, remember: '1')
-    assert_equal @user.reload.remember_digest, assigns(:user).remember_digest
+    log_in_as(@account, remember: '1')
+    assert_equal @account.reload.remember_digest, assigns(:account).remember_digest
   end
 
   test "login without remembering" do
-    log_in_as(@user, remember: '0')
+    log_in_as(@account, remember: '0')
     assert_nil cookies['remember_token']
   end
 
-  test "logging in a logged in user resets the session, and the user remains logged in" do
-    log_in_as @user
+  test "logging in a logged in account resets the session, and the account remains logged in" do
+    log_in_as @account
     old_session_id = session.id
     assert is_logged_in?
-    log_in_as @user
+    log_in_as @account
     assert is_logged_in?
     assert_not_equal old_session_id, session.id
   end

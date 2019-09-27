@@ -23,22 +23,22 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  # Returns true if a test user is logged in.
+  # Returns true if a test account is logged in.
   def is_logged_in?
-    session.key?(:user_id)
+    session.key?(:account_id)
   end
 
-  # Log in as a particular user.
-  def log_in_as(user)
-    session[:user_id] = user.id
+  # Log in as a particular account.
+  def log_in_as(account)
+    session[:account_id] = account.id
   end
 
   def logout
-    session.delete :user_id
+    session.delete :account_id
   end
 
-  def current_user
-    Account.find(session[:user_id]) || @account
+  def current_account
+    Account.find(session[:account_id]) || @account
   end
 
 end
@@ -48,15 +48,15 @@ class ActionDispatch::IntegrationTest
     log_out
   end
 
-  # Log in as a particular user.
-  def log_in_as(user, *args)
+  # Log in as a particular account.
+  def log_in_as(account, *args)
     options = args.extract_options!
     password = options[:password] || 'password'
     remember = options[:remember] || '1'
 
     post login_path, params: {
       session: {
-        email: user.email,
+        email: account.email,
         password: password,
         remember: remember
       }
