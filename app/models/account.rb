@@ -53,6 +53,7 @@ class Account < ApplicationRecord
 
     def clean_email
       self.email = email.downcase.strip if email.present?
+      self.unconfirmed_email = unconfirmed_email.downcase.strip if unconfirmed_email.present?
     end
 
     def password_should_not_equal_email_or_username

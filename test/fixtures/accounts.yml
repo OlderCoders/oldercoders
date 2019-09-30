@@ -5,10 +5,9 @@ michael:
   last_name:          Bester
   email:              michael@kimili.com
   username:           bester
-  type:               Account
   role:               :admin
-  encrypted_password: <%= Account.digest('password') %>
-  confirmation_token: <%= Account.digest('confirmation') %>
+  encrypted_password: <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmation_token: <%= Devise::Encryptor.digest(Account, 'confirmation') %>
   confirmed_at:       <%= Time.current.to_datetime %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:          <%= TimeZoneHelper.random_time_zone %>
@@ -18,10 +17,9 @@ hugh:
   last_name:          Jass
   email:              hugh@jass.com
   username:           rumpus
-  type:               Account
   role:               :user
-  encrypted_password: <%= Account.digest('password') %>
-  confirmation_token: <%= Account.digest('confirmation') %>
+  encrypted_password: <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmation_token: <%= Devise::Encryptor.digest(Account, 'confirmation') %>
   confirmed_at:       <%= Time.current.to_datetime %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:          <%= TimeZoneHelper.random_time_zone %>
@@ -32,10 +30,9 @@ luke:
   last_name:       the Dog
   email:           luke@dogs.com
   username:        mister_bat_ears
-  type:            Account
   role:            :user
-  encrypted_password: <%= Account.digest('password') %>
-  confirmation_token: <%= Account.digest('confirmation') %>
+  encrypted_password: <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmation_token: <%= Devise::Encryptor.digest(Account, 'password') %>
   confirmed_at:    <%= Time.current.to_datetime %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
@@ -45,11 +42,8 @@ igor:
   last_name:       Igor
   email:           humpman@frankensteinscastle.com
   username:        hunchback_man
-  type:            Account
   role:            :user
-  encrypted_password: <%= Account.digest('password') %>
-  confirmation_token: nil
-  confirmed_at:       nil
+  encrypted_password: <%= Devise::Encryptor.digest(Account, 'password') %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:            <%= TimeZoneHelper.random_time_zone %>
 
@@ -59,10 +53,9 @@ patty:
   last_name:       Patty
   email:           no_profile@patty.com
   username:        patty
-  type:            Account
   role:            :user
-  encrypted_password: <%= Account.digest('password') %>
-  confirmation_token: <%= Account.digest('confirmation') %>
+  encrypted_password: <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmation_token: <%= Devise::Encryptor.digest(Account, 'password') %>
   confirmed_at:       <%= Time.current.to_datetime %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
@@ -72,10 +65,7 @@ inigo:
   first_name:      Invited
   last_name:       Inigo
   email:           inigo@example.com
-  type:            Account
   role:            :user
-  confirmation_token: nil
-  confirmed_at:       nil
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
 
@@ -84,10 +74,9 @@ umberto:
   first_name:      Usernameless
   last_name:       Umberto
   email:           umberto@example.com
-  type:            Account
   role:            :user
-  encrypted_password: <%= Account.digest('password') %>
-  confirmation_token: <%= Account.digest('confirmation') %>
+  encrypted_password: <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmation_token: <%= Devise::Encryptor.digest(Account, 'password') %>
   confirmed_at:       <%= Time.current.to_datetime %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>

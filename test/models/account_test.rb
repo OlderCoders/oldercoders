@@ -122,17 +122,10 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
-  test "pending email can be blank" do
-    @accounts.each do |account|
-      account.new_email = "     "
-      account.save
-      assert account.valid?
-    end
-  end
-
   test "pending email should not be too long" do
     @accounts.each do |account|
-      account.new_email = "a" * 244 + "@example.com"
+      account.email = "a" * 244 + "@example.com"
+      account.save
       assert_not account.valid?
     end
   end
@@ -143,7 +136,7 @@ class AccountTest < ActiveSupport::TestCase
       @accounts.each do |account|
         # Check both email and pending email
         account.email = valid_address
-        account.new_email = valid_address
+        account.unconfirmed_email = valid_address
         assert account.valid?, "#{valid_address.inspect} should be valid"
       end
     end
@@ -155,7 +148,7 @@ class AccountTest < ActiveSupport::TestCase
       @accounts.each do |account|
         # Check both email and pending email
         account.email = invalid_address
-        account.new_email = invalid_address
+        account.unconfirmed_email = invalid_address
         assert_not account.valid?, "#{invalid_address.inspect} should be invalid"
       end
     end
@@ -166,16 +159,17 @@ class AccountTest < ActiveSupport::TestCase
       sloppy_email = " #{account.username}@bar.com   "
       account.email = sloppy_email
       account.save
-      assert_equal sloppy_email.downcase.strip, account.reload.email
+      # Because we're using :confirmable, Devise saves the new email in the :unconfirmed_email column
+      assert_equal sloppy_email.downcase.strip, account.reload.unconfirmed_email
     end
   end
 
   test "pending email addresses should strip leading and trailing whitespace" do
     @accounts.each do |account|
       sloppy_email = " #{account.username}@biglog.com   "
-      account.new_email = sloppy_email
+      account.unconfirmed_email = sloppy_email
       account.save
-      assert_equal sloppy_email.downcase.strip, account.reload.new_email
+      assert_equal sloppy_email.downcase.strip, account.reload.unconfirmed_email
     end
   end
 
@@ -184,6 +178,9 @@ class AccountTest < ActiveSupport::TestCase
       new_email = "FoOBar_#{account.email}"
       account.email = new_email
       account.save
+      # Remember :confirmable from Devise
+      assert_equal new_email.downcase, account.reload.unconfirmed_email
+      account.confirm
       assert_equal new_email.downcase, account.reload.email
     end
   end
@@ -191,9 +188,9 @@ class AccountTest < ActiveSupport::TestCase
   test "pending email addresses should be saved as lower-case" do
     @accounts.each do |account|
       mixed_case_email = "#{account.username}_FoO@BAr.OrG"
-      account.new_email = mixed_case_email
+      account.unconfirmed_email = mixed_case_email
       account.save
-      assert_equal mixed_case_email.downcase, account.reload.new_email
+      assert_equal mixed_case_email.downcase, account.reload.unconfirmed_email
     end
   end
 
@@ -205,15 +202,15 @@ class AccountTest < ActiveSupport::TestCase
 
   test "pending email addresses for accounts should be unique" do
     # make sure that the new email doesn't match another account's email
-    @account_hugh.new_email = @account.email.upcase
+    @account_hugh.email = @account.email.upcase
     assert_not @account_hugh.valid?
 
     # Make sure pending addresses are also unique amongst themselves
     pending_address = "luke@rebelalliance.com"
-    @account.new_email = pending_address
+    @account.unconfirmed_email = pending_address
     @account.save
     assert @account.valid?
-    @account_hugh.new_email = pending_address
+    @account_hugh.unconfirmed_email = pending_address
     assert_not @account_hugh.valid?
   end
 
@@ -231,10 +228,13 @@ class AccountTest < ActiveSupport::TestCase
     html = '<b><a href="http://foo.com/">foo</a></b><img src="bar.jpg"><script src="http://hackz.js"></script>'
     @accounts.each do |account|
       account.attributes.select{ |_, value| value.is_a? String }.each do |key, value|
+        previous_value = value
         account[key] = html
         if account.valid?
           account.save!
           assert_equal 'foo', account.reload[key]
+          account[key] = previous_value
+          account.save
         else
           # The HTML string didn't pass validation. Reset the value
           account[key] = value

@@ -42,7 +42,7 @@ class AddDeviseToAccounts < ActiveRecord::Migration[6.0]
       t.string   :confirmation_token
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email
+      t.string   :unconfirmed_email, length: 255
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
@@ -81,7 +81,6 @@ class AddDeviseToAccounts < ActiveRecord::Migration[6.0]
       t.string   :email_confirmation_digest, limit: 100, null: true, default: nil
       t.datetime :email_confirmation_sent_at
 
-      t.string   :password_digest, limit: 100, null: true, default: nil
       t.string   :remember_digest, limit: 100, null: true, default: nil
 
       t.string   :activation_digest, limit: 100, null: true, default: nil
