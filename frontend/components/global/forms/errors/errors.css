@@ -1,36 +1,40 @@
 /* Form Error Messages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .form-errors {
-	h4 {
-		margin-bottom: 1rem;
-		font-size: var(--font-size--default);
-	}
+  h4 {
+    margin-bottom: 1rem;
+    font-size: var(--font-size--default);
+  }
 
-	ul {
-		list-style: none;
-		padding: 0;
+  ul {
+    list-style: none;
+    padding: 0;
 
+    li {
+      font-size: var(--font-size--medium);
+      font-weight: var(--font-weight--medium);
+      margin: 0 0 var(--space-1);
+      padding-left: 2em;
 
-		li {
-			background:	var(--color-error);
-			border-radius: var(--border-radius);
-			color: var(--color-white);
-			font-size: var(--font-size--medium);
-			font-weight: var(--font-weight--medium);
-			padding: var(--baseline) var(--space-1);
-			margin: 0 0 var(--baseline);
-			box-shadow: var(--shadow-default);
+      &:before {
+        content: "\2192";
+        background: var(--color-error);
+        border-radius: 1.5em;
+        box-shadow: var(--shadow-default);
+        color: var(--color-white);
+        display: inline-block;
+        margin: 0 0.5em 0 -2em;
+        padding: 0;
+        width: 1.5em;
+        height: 1.5em;
+        line-height: 1.5em;
+        text-align: center;
+      }
+    }
 
-			&:before {
-				content: '\2192';
-				display: inline-block;
-				margin-right: var(--baseline);
-			}
-		}
-
-		a {
-			color: var(--color-white);
-			text-decoration: underline;
-		}
-	}
+    a {
+      color: var(--color-white);
+      text-decoration: underline;
+    }
+  }
 }
