@@ -271,9 +271,7 @@ label + .input-hint {
 
 /* Form Actions */
 .actions--form {
-  &:not(:last-child) {
-    margin-bottom: var(--space-3);
-  }
+  margin-bottom: var(--space-3);
 }
 
 /*

@@ -49,6 +49,9 @@ en:
       choose_password: "Choose a password"
       confirm_password: "Confirm your password"
       create_account: "Create your account"
+      new:
+        have_account: "Already have an account?"
+        sign_in: "Sign in!"
       hint:
         email: "The email address you'd like to use to sign in"
         password: "Your password should be at least %{minimum_characters} characters long"

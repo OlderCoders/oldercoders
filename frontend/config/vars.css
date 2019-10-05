@@ -1,108 +1,107 @@
 :root {
-	/* Fonts */
-	--font-sans-serif: "Public Sans", -apple-system, BlinkMacSystemFont,
-		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-		"Helvetica Neue", sans-serif;
+  /* Fonts */
+  --font-sans-serif: "Public Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
 
-	/* Colors */
+  /* Colors */
 
-	--color-primary-dark: #512DA8;
-	--color-primary: #673AB7;
-	--color-primary-light: #D1C4E9;
+  --color-primary-dark: #512da8;
+  --color-primary: #673ab7;
+  --color-primary-light: #d1c4e9;
 
-	--color-accent: #E040FB;
+  --color-accent: #e040fb;
 
-	--color-error: #cc0000;
-	--color-warning: #E9C809;
+  --color-error: #cc0000;
+  --color-warning: #e9c809;
 
-	--color-white: #fff;
-	--color-black: #000;
+  --color-white: #fff;
+  --color-black: #000;
 
-	--color-charcoal: #212121;
-	--color-graphite: #757575;
-	--color-putty: #bdbdbd;
-	--color-smoke: #d7d7d7;
-	--color-mist: #f2f2f2;
+  --color-charcoal: #212121;
+  --color-graphite: #757575;
+  --color-putty: #bdbdbd;
+  --color-smoke: #d7d7d7;
+  --color-mist: #f2f2f2;
 
-	/* Animations */
+  /* Animations */
 
-	--animation-default: 160ms cubic-bezier(0.23, 1, 0.32, 1);
-	--animation-ease-in-out: 200ms cubic-bezier(0.77, 0, 0.175, 1); /* https://easings.net/#easeInOutQuart */
+  --animation-default: 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  --animation-ease-in-out: 200ms cubic-bezier(0.77, 0, 0.175, 1); /* https://easings.net/#easeInOutQuart */
 
-	/* Baseline Spacing */
+  /* Baseline Spacing */
 
-	--baseline: 0.5rem;
+  --baseline: 0.5rem;
 
-	/* Container Sizes */
+  /* Container Sizes */
 
-	--container-width--narrow:  50rem;
-	--container-width--default: 114rem;
-	--container-width--wide:    138rem;
+  --container-width--narrow: 50rem;
+  --container-width--default: 114rem;
+  --container-width--wide: 138rem;
 
-	/* Font Metrics */
-	--font-size--extrasmall:    1.3rem;
-	--font-size--small:         1.4rem;
-	--font-size--medium:        1.7rem;
-	--font-size--default:       1.9rem;
-	--font-size--large:         2.4rem;
-	--font-size--larger:        2.8rem;
-	--font-size--extralarge:    4.0rem;
+  /* Font Metrics */
+  --font-size--extrasmall: 1.3rem;
+  --font-size--small: 1.4rem;
+  --font-size--medium: 1.7rem;
+  --font-size--default: 1.9rem;
+  --font-size--large: 2.4rem;
+  --font-size--larger: 2.8rem;
+  --font-size--extralarge: 4rem;
 
-	--font-weight--thin:        100;
-	--font-weight--extralight:  200;
-	--font-weight--light:       300;
-	--font-weight--base:        400;
-	--font-weight--medium:      500;
-	--font-weight--bold:        700;
-	--font-weight--extrabold:   800;
-	--font-weight--black:       900;
+  --font-weight--thin: 100;
+  --font-weight--extralight: 200;
+  --font-weight--light: 300;
+  --font-weight--base: 400;
+  --font-weight--medium: 500;
+  --font-weight--bold: 700;
+  --font-weight--extrabold: 800;
+  --font-weight--black: 900;
 
-	/* Line Height */
+  /* Line Height */
 
-	--line-height--base:       1.5;
-	--line-height--heading:    1.1;
+  --line-height--base: 1.5;
+  --line-height--heading: 1.1;
 
-	/* Spacing */
+  /* Spacing */
 
-	--space-0: 0;
-	--space-1: calc(var(--baseline) * 2);
-	--space-2: calc(var(--baseline) * 3);
-	--space-3: calc(var(--baseline) * 5);
-	--space-4: calc(var(--baseline) * 8);
-	--space-5: calc(var(--baseline) * 11);
-	--space-6: calc(var(--baseline) * 17);
+  --space-0: 0;
+  --space-1: calc(var(--baseline) * 2);
+  --space-2: calc(var(--baseline) * 3);
+  --space-3: calc(var(--baseline) * 5);
+  --space-4: calc(var(--baseline) * 8);
+  --space-5: calc(var(--baseline) * 11);
+  --space-6: calc(var(--baseline) * 17);
 
-	/* Borders */
+  /* Borders */
 
-	--border-color:       var(--color-smoke);
-	--border-style:       solid;
-	--border-radius:      4px;
-	--border-width:       1px;
+  --border-color: var(--color-smoke);
+  --border-style: solid;
+  --border-radius: 4px;
+  --border-width: 1px;
 
-	/* Buttons */
+  /* Buttons */
 
-	--button-padding:     var(--space-2) var(--space-3);
-	--button-padding--sm: var(--space-1) var(--space-2);
+  --button-padding: var(--space-2) var(--space-3);
+  --button-padding--sm: var(--space-1) var(--space-2);
 
-	/* Forms */
-	--form-padding:       	var(--baseline) var(--space-1);
-	--input-height:         4.4rem;
-	--input-border-width:	1px;
-	--input-addon-bg-color:	var(--color-white);
-	--input-addon-color:	var(--color-putty);
+  /* Forms */
+  --form-padding: var(--baseline) var(--space-1);
+  --input-height: 4.4rem;
+  --input-border-width: 2px;
+  --input-addon-bg-color: var(--color-white);
+  --input-addon-color: var(--color-putty);
 
-	/* Allows for 4 lines on textareas - 1.5em line height * 4 */
-	--textarea-height:      6em;
+  /* Allows for 4 lines on textareas - 1.5em line height * 4 */
+  --textarea-height: 6em;
 
-	--select-padding:       var(--baseline) var(--space-4) var(--baseline) var(--space-1);
+  --select-padding: var(--baseline) var(--space-4) var(--baseline)
+    var(--space-1);
 
-	/* Box Shadows */
+  /* Box Shadows */
 
-	--shadow-default:      0 1px 2px rgba(0,0,0,.15);
-	--shadow-subtle:       0 1px 1px rgba(0,0,0,.04);
+  --shadow-default: 0 1px 2px rgba(0, 0, 0, 0.15);
+  --shadow-subtle: 0 1px 1px rgba(0, 0, 0, 0.04);
 
-
-	/* Alerts */
-	--alert--max-width:    44rem;
-
+  /* Alerts */
+  --alert--max-width: 44rem;
 }

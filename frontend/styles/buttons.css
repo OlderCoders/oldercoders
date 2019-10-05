@@ -22,6 +22,7 @@ input[type="submit"],
   text-align: center;
   text-decoration: none;
   touch-action: manipulation;
+  text-transform: capitalize;
   transition: background-color var(--animation-default),
     background var(--animation-default), color var(--animation-default),
     border var(--animation-default);
@@ -29,7 +30,6 @@ input[type="submit"],
   vertical-align: middle;
   white-space: nowrap;
   width: 100%;
-  -webkit-appearance: none;
   appearance: none;
 
   &:hover,
