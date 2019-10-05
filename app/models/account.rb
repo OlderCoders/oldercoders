@@ -21,8 +21,10 @@ class Account < ApplicationRecord
   VALID_USERNAME = /\A\w+\Z/.freeze # Case insensitive match a-z, 0-9 and underscores
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
-  validates :first_name, presence: true, length: { maximum: 255 }
-  validates :last_name, presence: true, length: { maximum: 255 }
+  validates :first_name, length: { maximum: 255 }
+  validates :last_name, length: { maximum: 255 }
+  validates :first_name, presence: true, unless: :new_record?
+  validates :last_name, presence: true, unless: :new_record?
 
   validates :email,
             presence: true,
