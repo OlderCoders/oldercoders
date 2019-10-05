@@ -1,0 +1,34 @@
+<%= component 'global/forms/errors', errors: resource.errors.full_messages %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <div class="input-field">
+    <%= f.label :email, t('devise.registrations.your_email')  %>
+    <p class="input-hint">
+      <%= t 'devise.registrations.hint.email' %>
+    </p>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :password, t('devise.registrations.choose_password') %>
+    <% if @minimum_password_length %>
+    <p class="input-hint">
+      <%= t 'devise.registrations.hint.password', minimum_characters: @minimum_password_length %>
+    </p>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :password_confirmation, t('devise.registrations.confirm_password') %>
+    <p class="input-hint">
+      <%= t 'devise.registrations.hint.password_confirmation' %>
+    </p>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions actions--form">
+    <%= f.button t('devise.registrations.create_account'), class: 'btn--primary' %>
+  </div>
+<% end %>

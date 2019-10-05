@@ -45,10 +45,25 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+      your_email: "Your Email"
+      choose_password: "Choose a password"
+      confirm_password: "Confirm your password"
+      create_account: "Create your account"
+      hint:
+        email: "The email address you'd like to use to sign in"
+        password: "Your password should be at least %{minimum_characters} characters long"
+        password_confirmation: "Enter your password once more"
+
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      enter_email: "Enter your email address"
+      enter_password: "Enter your password"
+      remember_me: "Remember me"
+      new:
+        no_account: "Don't have an account yet?"
+        join: "Join the Older Coders community!"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

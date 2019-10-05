@@ -25,11 +25,6 @@ module CurrentAccount
     @account = current_account
   end
 
-  # Sets the currently logged in account as @account
-  def current_account_as_account
-    @account = current_account if current_account.is_a? Account
-  end
-
   # Redirects to the current account.
   def redirect_to_current_account
     redirect_to account_url(username: current_account.username) and return unless current_account.username.blank?

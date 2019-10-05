@@ -1,21 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :accounts
+  devise_for :accounts,
+             path: 'account',
+             path_names: {
+               sign_in: 'login',
+               sign_out: 'logout',
+               sign_up: 'new'
+             }
+
   root 'sessions#new', format: 'html'
-
-  # Login/Logout
-  get    'login',  to: 'sessions#new'
-  post   'login',  to: 'sessions#create'
-  get    'logout', to: 'sessions#destroy'
-  delete 'logout', to: 'sessions#destroy'
-
-  # New Accounts
-  get    'signup',         to: 'accounts#new'
-  post   'account/create', to: 'accounts#create', as: 'create_account_account'
-
-  # Account Activation
-  get    'activate/:id',          to: 'account_activations#edit',   as: 'account_activation'
-  get    'activation/resend/:id', to: 'account_activations#resend', as: 'resend_account_activation'
 
   scope '/account' do
     scope module: :accounts do
