@@ -1,13 +1,13 @@
 <%= component 'global/forms/errors', errors: resource.errors.full_messages %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'form form--registration') do |f| %>
 
   <div class="input-field">
     <%= f.label :email, t('devise.registrations.your_email')  %>
     <p class="input-hint">
       <%= t 'devise.registrations.hint.email' %>
     </p>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, placeholder: t('devise.placeholders.your_email'), autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="input-field">
@@ -17,7 +17,7 @@
       <%= t 'devise.registrations.hint.password', minimum_characters: @minimum_password_length %>
     </p>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, placeholder: t('devise.placeholders.your_password'), autocomplete: "new-password" %>
   </div>
 
   <div class="input-field">
@@ -25,10 +25,17 @@
     <p class="input-hint">
       <%= t 'devise.registrations.hint.password_confirmation' %>
     </p>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, placeholder: t('devise.placeholders.confirm_password'), autocomplete: "new-password" %>
   </div>
 
   <div class="actions actions--form">
     <%= f.button t('devise.registrations.create_account'), class: 'btn--primary' %>
   </div>
+
+  <%- if controller_name != 'sessions' %>
+    <p class="form__link">
+      <%= t 'devise.registrations.new.have_account' %>
+      <%= link_to t('devise.registrations.new.sign_in'), new_session_path(resource_name) %>
+    </p>
+  <% end %>
 <% end %>

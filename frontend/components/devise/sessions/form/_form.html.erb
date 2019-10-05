@@ -1,14 +1,21 @@
 <%= component 'global/forms/errors', errors: resource.errors.full_messages %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form form--session') do |f| %>
+
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <p class="form--session__link">
+      <%= link_to t('devise.sessions.new.forgot_password'), new_password_path(resource_name) %>
+    </p>
+  <% end %>
+
   <div class="input-field">
     <%= f.label :email %>
-    <%= f.email_field :email, placeholder: t('devise.sessions.enter_email'), autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, placeholder: t('devise.placeholders.your_email'), autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="input-field">
     <%= f.label :password %>
-    <%= f.password_field :password, placeholder: t('devise.sessions.enter_password'), autocomplete: "current-password" %>
+    <%= f.password_field :password, placeholder: t('devise.placeholders.your_password'), autocomplete: "current-password" %>
   </div>
 
   <div class="actions actions--form">
@@ -22,6 +29,13 @@
         <span><%= t 'devise.sessions.remember_me' %></span>
       </label>
     </div>
+  <% end %>
+
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <p class="form__link">
+      <%= t 'devise.sessions.new.no_account' %>
+      <%= link_to t('devise.sessions.new.join'), new_registration_path(resource_name) %>
+    </p>
   <% end %>
 
 <% end %>

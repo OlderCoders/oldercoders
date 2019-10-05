@@ -1,9 +1,3 @@
 <%= c 'devise/registrations/form' %>
 
-<%- if controller_name != 'sessions' %>
-  <p>
-    <%= t '.have_account' %>
-    <%= link_to t('.sign_in'), new_session_path(resource_name) %>
-  </p>
-<% end %>
 

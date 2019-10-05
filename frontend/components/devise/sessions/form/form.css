@@ -1,0 +1,6 @@
+.form--session {
+
+  &__link {
+    font-size: var(--font-size--small);
+  }
+}

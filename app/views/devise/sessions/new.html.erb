@@ -1,10 +1,2 @@
 
 <%= c 'devise/sessions/form' %>
-
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <p>
-    <%= t '.no_account' %>
-    <%= link_to t('.join'), new_registration_path(resource_name) %>
-  </p>
-<% end %>
-

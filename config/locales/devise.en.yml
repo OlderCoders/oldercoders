@@ -2,6 +2,10 @@
 
 en:
   devise:
+    placeholders:
+      your_email: "Enter your email address"
+      your_password: "Enter your password"
+      confirm_password: "Enter your password again"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -36,6 +40,13 @@ en:
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
+      your_email: "Your Email"
+      hint:
+        email: "The email address you created your Older Coders account with"
+      new:
+        remember_password: "Remember your password?"
+        sign_in: "Sign in!"
+
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -65,8 +76,10 @@ en:
       enter_password: "Enter your password"
       remember_me: "Remember me"
       new:
+        forgot_password: "Forgot your password?"
         no_account: "Don't have an account yet?"
         join: "Join the Older Coders community!"
+
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
