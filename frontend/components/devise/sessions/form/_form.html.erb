@@ -10,7 +10,7 @@
 
   <div class="input-field">
     <%= f.label :email %>
-    <%= f.email_field :email, placeholder: t('devise.placeholders.your_email'), autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, placeholder: t('devise.placeholders.your_email'), autofocus: true, autocapitalize: 'none', autocorrect: 'off', spellcheck: 'false', autocomplete: "email" %>
   </div>
 
   <div class="input-field">

@@ -10,18 +10,18 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
   test 'new username route should redirect to login when not logged in' do
     get new_username_url
     assert_not flash.empty?
-    assert_redirected_to login_url
+    assert_redirected_to new_account_session_url
   end
 
   test 'logged in account without a username can get to the new username page' do
-    log_in_as @usernameless
+    sign_in_as @usernameless
     get new_username_url
     assert_response :success
     assert_template 'accounts/usernames/new'
   end
 
   test 'logged in account with a username should get redirected to the account edit page' do
-    log_in_as @account
+    sign_in_as @account
     get new_username_url
     assert_redirected_to account_url username: @account.username
   end
@@ -33,11 +33,11 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_not flash.empty?
-    assert_redirected_to login_url
+    assert_redirected_to new_account_session_url
   end
 
   test 'should not set new username when patching the update username with an existing username when logged in' do
-    log_in_as @usernameless
+    sign_in_as @usernameless
     assert_nil @usernameless.username
     patch username_path, params: {
       account: {
@@ -49,7 +49,7 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should set new username when patching the update username when logged in without a username' do
-    log_in_as @usernameless
+    sign_in_as @usernameless
     assert_nil @usernameless.username
     patch username_path, params: {
       account: {
@@ -61,7 +61,7 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect to choose username when navigating to any other page on the site as a profileless account' do
-    log_in_as @usernameless
+    sign_in_as @usernameless
     assert_redirected_to new_username_url
     get account_path username: @account.username
     assert_redirected_to new_username_url

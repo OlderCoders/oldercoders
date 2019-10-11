@@ -1,6 +1,6 @@
 module Accounts::ProfilesHelper
 
-  MIN_AGE = 21
+  MIN_AGE = 18
   MAX_AGE = 120
 
   def birthday_selector(form)

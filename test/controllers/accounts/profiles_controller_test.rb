@@ -9,17 +9,17 @@ class Accounts::ProfilesControllerTest < ActionDispatch::IntegrationTest
   test 'edit profile route should redirect to login when not logged in' do
     get edit_profile_url username: @account.username
     assert_not flash.empty?
-    assert_redirected_to login_url
+    assert_redirected_to new_account_session_url
   end
 
   test 'edit profile route should redirect to logged in account profile when you try to access a different account edit page' do
-    log_in_as @account
+    sign_in_as @account
     get edit_profile_url username: @other_account.username
     assert_redirected_to account_url username: @account.username
   end
 
   test 'edit profile route should load successfully for a logged in account with a profile' do
-    log_in_as @account
+    sign_in_as @account
     get edit_profile_url username: @account.username
     assert_template 'accounts/profiles/edit'
     assert_response :success
@@ -34,11 +34,11 @@ class Accounts::ProfilesControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_not flash.empty?
-    assert_redirected_to login_url
+    assert_redirected_to new_account_session_url
   end
 
   test 'update profile route should redirect to logged in account profile when you try to update a different account\'s profile' do
-    log_in_as @account
+    sign_in_as @account
     data = {
       bio: 'testing the bits and pieces',
       location: 'the french riveria',
@@ -54,7 +54,7 @@ class Accounts::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should display validation errors when editing profile with invalid data' do
-    log_in_as @account
+    sign_in_as @account
     data = {
       bio: 'a' * 500,
       location: 'b' * 500,
@@ -69,7 +69,7 @@ class Accounts::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update profile when editing as a logged in account' do
-    log_in_as @account
+    sign_in_as @account
     data = {
       bio: 'testing the bits and pieces',
       location: 'the french riveria',

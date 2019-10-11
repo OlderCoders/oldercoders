@@ -9,9 +9,9 @@ class AccountsLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with invalid information" do
-    get login_path
+    get new_account_session_url
     assert_template 'sessions/new'
-    post login_path, params: {
+    post account_session_path, params: {
       session: {
         email: "",
         password: ""
@@ -23,9 +23,9 @@ class AccountsLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with valid information followed by logout" do
-    get login_path
+    get new_account_session_url
     assert_template 'sessions/new'
-    post login_path, params: {
+    post account_session_path, params: {
       session: {
         email: @account.email,
         password: "password"
@@ -45,9 +45,9 @@ class AccountsLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with valid information without having a username set up" do
-    get login_path
+    get new_account_session_url
     assert_template 'sessions/new'
-    log_in_as @account_no_username
+    sign_in_as @account_no_username
     assert_nil @account_no_username.username
     assert is_logged_in?
     # Should be redirected to profile creation
@@ -58,9 +58,9 @@ class AccountsLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login as an inactive account" do
-    get login_path
+    get new_account_session_url
     assert_template 'sessions/new'
-    post login_path, params: {
+    post account_session_path, params: {
       session: {
         email: @account_inactive.email,
         password: 'password'
@@ -72,20 +72,20 @@ class AccountsLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with remembering" do
-    log_in_as(@account, remember: '1')
+    sign_in_as(@account, remember: '1')
     assert_equal @account.reload.remember_digest, assigns(:account).remember_digest
   end
 
   test "login without remembering" do
-    log_in_as(@account, remember: '0')
+    sign_in_as(@account, remember: '0')
     assert_nil cookies['remember_token']
   end
 
   test "logging in a logged in account resets the session, and the account remains logged in" do
-    log_in_as @account
+    sign_in_as @account
     old_session_id = session.id
     assert is_logged_in?
-    log_in_as @account
+    sign_in_as @account
     assert is_logged_in?
     assert_not_equal old_session_id, session.id
   end

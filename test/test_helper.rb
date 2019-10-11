@@ -29,7 +29,7 @@ class ActiveSupport::TestCase
   end
 
   # Log in as a particular account.
-  def log_in_as(account)
+  def sign_in_as(account)
     session[:account_id] = account.id
   end
 
@@ -45,16 +45,16 @@ end
 
 class ActionDispatch::IntegrationTest
   def teardown
-    log_out
+    sign_out
   end
 
   # Log in as a particular account.
-  def log_in_as(account, *args)
+  def sign_in_as(account, *args)
     options = args.extract_options!
     password = options[:password] || 'password'
     remember = options[:remember] || '1'
 
-    post login_path, params: {
+    post account_session_path, params: {
       session: {
         email: account.email,
         password: password,
@@ -63,8 +63,8 @@ class ActionDispatch::IntegrationTest
     }
   end
 
-  def log_out
-    get logout_path
+  def sign_out
+    delete destroy_account_session_url
   end
 
   def ujs_request

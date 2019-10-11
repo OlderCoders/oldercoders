@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
 
-  devise_for :accounts,
-             path: 'account',
-             path_names: {
-               sign_in: 'login',
-               sign_out: 'logout',
-               sign_up: 'new'
-             }
-
-  root 'sessions#new', format: 'html'
-
   scope '/account' do
+    devise_for :accounts,
+      path: '/',
+      path_names: {
+        sign_in: 'login',
+        sign_out: 'logout',
+        sign_up: 'new'
+      }
     scope module: :accounts do
-      resource :username, only: %i[new update]
+      resource :username, only: %i[new update], path_names: { edit: "/" }
     end
   end
 
@@ -20,8 +17,10 @@ Rails.application.routes.draw do
     resource :account, only: %i[show edit update destroy], path: '/'
 
     scope module: :accounts do
-      resource :profile, only: %i[edit update]
+      resource :profile, only: %i[edit update], path_names: { edit: "/" }
       resource :relationship, only: %i[create destroy]
     end
   end
+
+  root to: 'home#index'
 end

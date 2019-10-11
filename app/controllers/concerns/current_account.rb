@@ -41,7 +41,7 @@ module CurrentAccount
     return if logged_in?
     session[:forwarding_url] = request.original_url if request.get?
     flash[:error] = t('sessions.please_log_in')
-    redirect_to login_url
+    redirect_to new_account_session_url
   end
 
   # Confirms that the account is *not* logged in (Redirects to their profile page if they are.)
