@@ -23,16 +23,6 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  # Returns true if a test account is logged in.
-  def is_logged_in?
-    session.key?(:account_id)
-  end
-
-  # Log in as a particular account.
-  def sign_in_as(account)
-    session[:account_id] = account.id
-  end
-
   def logout
     session.delete :account_id
   end
@@ -43,28 +33,40 @@ class ActiveSupport::TestCase
 
 end
 
+class ActionController::TestCase
+  include Devise::Test::ControllerHelpers
+end
+
 class ActionDispatch::IntegrationTest
-  def teardown
-    sign_out
-  end
+  include Devise::Test::IntegrationHelpers
+
+  # def teardown
+  #   for account in Account.all
+  #     sign_out account
+  #   end
+  # end
 
   # Log in as a particular account.
   def sign_in_as(account, *args)
     options = args.extract_options!
     password = options[:password] || 'password'
-    remember = options[:remember] || '1'
+    remember_me = options[:remember_me] || '1'
 
     post account_session_path, params: {
-      session: {
+      account: {
         email: account.email,
         password: password,
-        remember: remember
+        remember_me: remember_me
       }
     }
   end
 
-  def sign_out
-    delete destroy_account_session_url
+  def sign_out_as(account)
+    delete destroy_account_session_path
+  end
+
+  def account_signed_in?
+    controller.respond_to? :current_account and controller.current_account.present?
   end
 
   def ujs_request

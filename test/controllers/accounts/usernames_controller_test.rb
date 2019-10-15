@@ -4,7 +4,7 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @account         = accounts(:michael)
     @other_account   = accounts(:hugh)
-    @usernameless = accounts(:umberto)
+    @usernameless    = accounts(:umberto)
   end
 
   test 'new username route should redirect to login when not logged in' do
@@ -14,14 +14,14 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'logged in account without a username can get to the new username page' do
-    sign_in_as @usernameless
+    sign_in @usernameless
     get new_username_url
     assert_response :success
     assert_template 'accounts/usernames/new'
   end
 
   test 'logged in account with a username should get redirected to the account edit page' do
-    sign_in_as @account
+    sign_in @account
     get new_username_url
     assert_redirected_to account_url username: @account.username
   end
@@ -37,7 +37,7 @@ class Accounts::UsernamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not set new username when patching the update username with an existing username when logged in' do
-    sign_in_as @usernameless
+    sign_in @usernameless
     assert_nil @usernameless.username
     patch username_path, params: {
       account: {
