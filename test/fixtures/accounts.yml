@@ -80,3 +80,18 @@ umberto:
   confirmed_at:       <%= Time.current.to_datetime %>
   confirmation_sent_at: <%= Time.current.to_datetime %>
   time_zone:       <%= TimeZoneHelper.random_time_zone %>
+
+<% 10.times do |n| %>
+<% name = Faker::Name %>
+user_<%= n %>:
+  first_name:      <%= name.first_name %>
+  last_name:       <%= name.last_name %>
+  email:           <%= Faker::Internet.safe_email(name: name.name) %>
+  role:            :user
+  username:        <%= Faker::Internet.username(specifier: 5..12, separators: %w(_)) %>
+  encrypted_password:   <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmation_token:   <%= Devise::Encryptor.digest(Account, 'password') %>
+  confirmed_at:         <%= Time.current.to_datetime %>
+  confirmation_sent_at: <%= Time.current.to_datetime %>
+  time_zone:            <%= TimeZoneHelper.random_time_zone %>
+<% end %>

@@ -27,7 +27,7 @@ hugh:
   coding_since: 1970-01-01
   website_url: https://rebelalliance.net
   bio: <%= Faker::Movies::StarWars.quote %>
-  employer_name:
+  employer_name: <%= Faker::Company.name %>
   employment_title:
   employer_url:
   twitter_username:
@@ -39,3 +39,27 @@ hugh:
   medium_url:
   behance_url:
   gitlab_url:
+
+<% 10.times do |n| %>
+<% name = Faker::Name.name %>
+user_<%= n %>:
+  account:            user_<%= n %>
+  birthday:           <%= Faker::Date.birthday min_age: 40, max_age: 80 %>
+  display_age:        <%= [true, false].sample %>
+  coding_since:       <%= Faker::Date.in_date_period(year: 1990) %>
+  website_url:        <%= Faker::Internet.url %>
+  bio:                <%= Faker::Movies::StarWars.quote %>
+  employer_name:      <%= Faker::Company.name %>
+  employment_title:   <%= Faker::Company.profession %>
+  employer_url:
+  twitter_username:
+  github_username:
+  facebook_url:
+  linkedin_url:
+  stackoverflow_url:
+  dribbble_url:
+  medium_url:
+  behance_url:
+  gitlab_url:
+<% end %>
+
