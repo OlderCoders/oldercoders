@@ -1,16 +1,19 @@
-
 html {
-    box-sizing: border-box;
-    min-height: 100%;
-    scroll-behavior: smooth;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  box-sizing: border-box;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-*, *:before, *:after { box-sizing: inherit; }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 body {
-	background-color: var(--color-mist) !important;
-    margin: 0;
-    padding: 0;
-    -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-mist) !important;
+  margin: 0;
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -1,6 +1,6 @@
-<%= component 'global/forms/errors', errors: @user.profile.errors.full_messages %>
+<%= component 'global/forms/errors', errors: @account.profile.errors.full_messages %>
 
-<%= form_with model: @user.profile, url: profile_path, scope: :account_profile, local: true do |f| %>
+<%= form_with model: @account.profile, url: profile_path, scope: :account_profile, local: true do |f| %>
   <fieldset>
     <legend><%= t 'accounts.profiles.edit.the_basics' %></legend>
     <div class="input-field">
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="input-field">
-    <label class="control">
+      <label class="control">
         <%= f.check_box(:display_age) %>
         <span><%= t 'accounts.profiles.edit.display_age' %></span>
       </label>

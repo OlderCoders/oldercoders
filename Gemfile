@@ -16,8 +16,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
-gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.1', require: false
+gem 'devise', '~> 4.7'
 gem 'name_of_person', '~> 1.1'
 gem 'sanitize', '~> 5.0'
 gem 'translate_enum', '~> 0.1.3'

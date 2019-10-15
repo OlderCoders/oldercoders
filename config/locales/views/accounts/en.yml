@@ -5,7 +5,7 @@ en:
         title: Choose Your Username
         next_steps:
           - Your username is an important part of getting the most out of Older Coders.
-          - With it, you'll have your own section of the site for the content you post on the site. As on other social sites, you'll also be able mention and link to other users in your posts and comments by referencing them by their username prefixed by an <strong>@</strong> symbol, such as <a href="/poobah">@poobah</a>.
+          - With it, you'll have your own section of the site for the content you post on the site. As on other social sites, you'll also be able mention and link to other accounts in your posts and comments by referencing them by their username prefixed by an <strong>@</strong> symbol, such as <a href="/poobah">@poobah</a>.
           - Go ahead and choose a memorable username below.
         set_username: Save Your Username
 
@@ -17,8 +17,8 @@ en:
         self: That's you!
         follow: Follow
         following: Following
-        follow_user: Follow %{name}
-        unfollow_user: Unfollow %{name}
+        follow_account: Follow %{name}
+        unfollow_account: Unfollow %{name}
 
     profiles:
       edit:

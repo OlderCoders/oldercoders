@@ -1,0 +1,7 @@
+<div class="alert" role="status" aria-live="polite">
+  <% alerts.each do |alert| %>
+    <p class="alert--message" data-type="<%= alert[:type] %>">
+        <%= alert[:message] %>
+    </p>
+  <% end %>
+</div>

@@ -3,7 +3,7 @@ if Rails.env.development?
 
   password = 'oldercoder'
 
-  User.create!(
+  Account.create!(
     first_name:            "Michael",
     last_name:             "Bester",
     email:                 "michael@oldercoders.net",
@@ -11,11 +11,9 @@ if Rails.env.development?
     role:                  'admin',
     password:              password,
     password_confirmation: password,
-    activated:             true,
-    activated_at:          Time.zone.now
-  )
+  ).confirm
 
-  User.create!(
+  Account.create!(
     first_name:            "Hugh",
     last_name:             "Jass",
     email:                 "hugh@jass.com",
@@ -23,7 +21,5 @@ if Rails.env.development?
     role:                  'user',
     password:              password,
     password_confirmation: password,
-    activated:             true,
-    activated_at:          Time.zone.now
-  )
+  ).confirm
 end

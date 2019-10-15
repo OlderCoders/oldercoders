@@ -1,19 +1,19 @@
 class Accounts::ProfilesController < ApplicationController
 
-  include CorrectUser
+  include CorrectAccount
 
-  before_action :logged_in_user
+  before_action :logged_in_account
   before_action :current_account_profile?
 
   def edit
   end
 
   def update
-    @user.profile.update(account_profile_params)
-    if @user.profile.valid?
-      unless @user.errors.any?
+    @account.profile.update(account_profile_params)
+    if @account.profile.valid?
+      unless @account.errors.any?
         flash[:notice] = t('.has_been_updated')
-        redirect_to user_url and return
+        redirect_to account_url and return
       end
     end
     render 'edit'

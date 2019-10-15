@@ -4,7 +4,7 @@ class NotReservedWordValidator < ActiveModel::Validator
     @field = options[:field] || :username
   end
 
-  # Ensures that the new email a user enters isn't already associated with another account
+  # Ensures that the new email a account enters isn't already associated with another account
   def validate(record)
     return unless username_is_reserved(record)
 

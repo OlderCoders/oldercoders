@@ -153,7 +153,7 @@ const FormHandler = {
         NProgress.done();
       })
       .catch(error => {
-        // TODO - display an error to the user
+        // TODO - display an error to the account
         this.releaseActiveTrigger(form);
         NProgress.done();
       });

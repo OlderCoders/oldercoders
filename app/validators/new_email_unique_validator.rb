@@ -1,11 +1,11 @@
 class NewEmailUniqueValidator < ActiveModel::Validator
 
-  # Ensures that the new email a user enters isn't already associated with another account
+  # Ensures that the new email a account enters isn't already associated with another account
   def validate(record)
     return if new_email_is_unique(record)
     record.errors.add(
       :email,
-      I18n.t('user.email.errors.not_unique')
+      I18n.t('account.email.errors.not_unique')
     )
   end
 

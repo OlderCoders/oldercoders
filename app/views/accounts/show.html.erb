@@ -1,0 +1,39 @@
+<% content_for :title, t('.title', name: @account.name, username: @account.username) %>
+
+<article class="container">
+  <header class="vcard">
+    <h1 class="fn">
+      <%= @account.name %>
+    </h1>
+
+    <p>
+      <span class="age">
+        <% if @account.profile.display_age? and @account.profile.birthday.present?  %>
+          <%= t('.age', age: age(@account.profile.birthday)).html_safe %>
+        <% else %>
+          <%= t('.hide_age').sample %>
+        <% end %>
+      </span>
+      <% if @account.profile.coding_since.present? %>
+        <span class="age">
+          <%= t('.coding_since', year: @account.profile.coding_since.in_time_zone.to_s(:year)) %>
+        </span>
+      <% end %>
+    </p>
+    <% if @account.profile.location.present? %>
+      <p class="location adr">
+        <%= @account.profile.location %>
+      </p>
+    <% end %>
+  </header>
+
+  <div class="body">
+    <section class="bio">
+      <%= @account.profile.bio %>
+    </section>
+
+    <section class="account-folow-status">
+      <%= c 'accounts/relationships/form', account: @account, detail: true %>
+    </section>
+  </div>
+</article>
