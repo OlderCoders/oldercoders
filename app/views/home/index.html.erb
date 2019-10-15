@@ -1,0 +1,11 @@
+<h1>Older Coders</h1>
+
+<% if account_signed_in? %>
+<p>
+  <%= link_to t('global.log_out'), destroy_account_session_url, method: :delete %>
+</p>
+<% else %>
+<p>
+  <%= link_to t('global.log_in'), new_account_session_url %>
+</p>
+<% end %>

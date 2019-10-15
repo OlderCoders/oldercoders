@@ -5,3 +5,4 @@ import "scripts";
 import "components";
 
 // require("channels");
+require("@rails/ujs").start();
