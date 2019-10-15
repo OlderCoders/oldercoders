@@ -1,7 +1,5 @@
 class Account < ApplicationRecord
   include TranslateEnum
-  include Tokenable
-  include Digestable
   include Friendable
 
   enum role: {
