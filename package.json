@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
+    "@rails/actiontext": "^6.0.0",
     "@rails/webpacker": "^4.0.7",
     "axios": "^0.19.0",
     "form-serialize": "^0.7.2",
@@ -14,7 +15,8 @@
     "postcss-custom-properties": "^9.0.2",
     "postcss-nested": "^4.1.2",
     "postcss-nested-ancestors": "^2.0.0",
-    "stimulus": "^1.1.1"
+    "stimulus": "^1.1.1",
+    "trix": "^1.2.1"
   },
   "version": "0.1.0",
   "devDependencies": {

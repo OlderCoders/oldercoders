@@ -1,4 +1,6 @@
 import Axios from "axios";
+import "trix";
+import "@rails/actiontext";
 import "controllers";
 import "config";
 import "styles";
