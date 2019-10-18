@@ -1,7 +1,9 @@
 import Axios from "axios";
 import NProgress from "nprogress";
+import CustomEvents from "../utils/custom-events";
+import CSRF from './csrf';
 
-const MethodHandler = {
+const LinkHandler = {
   init() {
     document
       .querySelector("body")
@@ -21,7 +23,7 @@ const MethodHandler = {
       return;
     }
 
-    const element = evt.target.closest("a[data-remote]");
+    const element = evt.target.closest("a[data-method]");
     if (!element) {
       return;
     }
@@ -30,9 +32,67 @@ const MethodHandler = {
     const opts = {
       url: element.getAttribute("href"),
       method: element.getAttribute("data-method"),
-      responseType: element.getAttribute("data-response-type")
+      responseType: element.getAttribute("data-response-type"),
+      data: {}
     };
-    this.doRemoteRequest(opts, element);
+
+    if (CSRF.param() && CSRF.token()) {
+      opts.data[CSRF.param()] = CSRF.token();
+    }
+
+    if (element.dataset.remote) {
+      this.doRemoteRequest(opts, element);
+    } else {
+      this.doFormRequest(opts);
+    }
+  },
+
+  /**
+   * Builds and submits a form out of a link with a `data-method` attribute
+   *
+   * @param {Object} ops - The configuration for the remote request. Can pass in `url`, `method`, and `responseType` properties.
+   * @param {Element} element - The element that triggered the request, if applicable.
+   * @returns {Promise} The request promise.
+   */
+  doFormRequest(opts, element = null) {
+    // Avoid double triggers
+    if (element && this.activeTriggers.includes(element)) {
+      return false;
+    }
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = opts.url;
+    form.style.display = "none";
+
+    let input;
+
+    Object.keys(opts.data).forEach(param => {
+      input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", param);
+      input.setAttribute("value", opts.data[param]);
+      form.appendChild(input);
+    });
+
+    if (opts.method !== "POST") {
+      input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", "_method");
+      input.setAttribute("value", opts.method);
+      form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+
+    // Mark the trigger as active
+    if (element) {
+      this.activeTriggers.push(element);
+      element.classList.add("-loader");
+    }
+
+    return true;
   },
 
   /**
@@ -53,8 +113,7 @@ const MethodHandler = {
       method: (opts.method || "get").toLowerCase(),
       responseType: (opts.responseType || "json").toLowerCase(),
       headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-Requested-By": "UJS"
+        "X-Requested-With": "XMLHttpRequest"
       }
     };
 
@@ -79,7 +138,7 @@ const MethodHandler = {
    * @returns {Promise} The request promise.
    */
   sendRequest(config, element) {
-    // Show the loader
+    // Start the loading bar
     NProgress.start();
 
     // Do the request
@@ -92,10 +151,8 @@ const MethodHandler = {
       .then(response => {
         this.handleResponse(response.data);
         this.releaseActiveTrigger(element);
-        NProgress.done();
       })
-      .catch(error => {
-        // TODO - display an error to the account
+      .finally(() => {
         this.releaseActiveTrigger(element);
         NProgress.done();
       });
@@ -128,6 +185,7 @@ const MethodHandler = {
         }
       });
     });
+    CustomEvents.dispatch("DOMContentUpdated");
   },
 
   releaseActiveTrigger(trigger) {
@@ -143,4 +201,4 @@ const MethodHandler = {
   }
 };
 
-export default MethodHandler;
+export default LinkHandler;

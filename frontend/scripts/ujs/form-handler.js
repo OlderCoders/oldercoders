@@ -1,43 +1,23 @@
 import Axios from "axios";
 import NProgress from "nprogress";
 import serialize from "form-serialize";
-import { debounce } from "scripts/utils";
+import CustomEvents from "../utils/custom-events";
 
 const FormHandler = {
   init() {
-    const typeAheadThreshold = 500; // Millisecond delay between on typeAhead submissions
-    const body = document.querySelector("body");
-    const typeAheadInputHandler = debounce(
-      this.handleTypeAheadInput,
-      typeAheadThreshold
-    );
+    document
+      .querySelector("body")
+      .addEventListener("submit", this.handleFormSubmission.bind(this));
 
-    body.addEventListener("submit", this.handleFormSubmission.bind(this));
-    body.addEventListener("input", typeAheadInputHandler);
-
-    window.addEventListener(
-      "beforeunload",
-      this.clearActiveTriggers.bind(this)
-    );
+    window.addEventListener("beforeunload", () => {
+      NProgress.done();
+      this.clearActiveTriggers.bind(this);
+    });
 
     this.queryString = "";
     this.activeTriggers = [];
 
-    // Forego the spinner on the progress bar.
     NProgress.configure({ showSpinner: false });
-  },
-
-  handleTypeAheadInput(evt) {
-    const target = evt.target;
-    if (!target || !target.matches("input[data-typeAhead]")) {
-      return;
-    }
-    target.form.dispatchEvent(
-      new Event("submit", {
-        bubbles: true,
-        cancelable: true
-      })
-    );
   },
 
   /**
@@ -57,19 +37,25 @@ const FormHandler = {
     const form = evt.target;
     const submit = form.querySelector('button[type="submit"]');
 
+    // Start the loading indicator
+    NProgress.start();
+
     if (submit && "classList" in submit) {
       submit.classList.add("-loader");
     }
 
-    // Avoid double submits
-    if (this.activeTriggers.includes(form)) {
-      return null;
-    }
-    this.activeTriggers.push(form);
-
     if (form.matches("form[data-remote]")) {
       return this.doRemoteSubmission(evt, formData);
     }
+
+    if (form.matches("form:not([data-target='overlay'])")) {
+      // Avoid double submits
+      if (this.activeTriggers.includes(form)) {
+        return null;
+      }
+      this.activeTriggers.push(form);
+    }
+
     return null;
   },
 
@@ -85,8 +71,16 @@ const FormHandler = {
 
     evt.preventDefault();
 
+    // Avoid double submits
+    if (this.activeTriggers.includes(form)) {
+      return null;
+    }
+    this.activeTriggers.push(form);
+
+    this.clearErrorMessages(form);
+
     const xhrConfig = {
-      url: form.action,
+      url: form.action.value || form.action,
       method: (
         form.method ||
         form.getAttribute("data-method") ||
@@ -97,13 +91,12 @@ const FormHandler = {
       ).toLowerCase(),
       data: formData || new FormData(form),
       headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-Requested-By": "UJS"
+        "X-Requested-With": "XMLHttpRequest"
       }
     };
 
     // FormData(form) doesn't work for get requests
-    // Let's serialize the paramaeters
+    // Let's serialize the parameters
     if (xhrConfig.method === "get") {
       this.queryString = serialize(form);
       xhrConfig.url = `${form.action}?${this.queryString}`;
@@ -137,9 +130,6 @@ const FormHandler = {
    * @returns {Promise} The request promise.
    */
   sendRequest(form, config) {
-    // Start the loading bar
-    NProgress.start();
-
     // Do the request
     const request = Axios.request(config);
 
@@ -147,13 +137,8 @@ const FormHandler = {
     // Note these are not chained so other `then` blocks will also recieve the response argument.
     // For reference: https://github.com/axios/axios/issues/1057
     request
-      .then(response => {
-        this.handleResponse(response.data);
-        this.releaseActiveTrigger(form);
-        NProgress.done();
-      })
-      .catch(error => {
-        // TODO - display an error to the account
+      .then(response => this.handleResponse(response.data))
+      .finally(() => {
         this.releaseActiveTrigger(form);
         NProgress.done();
       });
@@ -162,11 +147,43 @@ const FormHandler = {
   },
 
   handleResponse(data) {
+    if (typeof data.success === "boolean" && !data.success) {
+      this.handleErrors(data);
+      return;
+    }
     if (data.redirect_to) {
       window.location.href = data.redirect_to;
       return;
     }
     this.updateContentBlocks(data.content);
+  },
+
+  handleErrors(data) {
+    Object.keys(data.errors).forEach(inputName => {
+      const input = document.querySelector(
+        `input[name^=${inputName}], textarea[name^=${inputName}], select[name^=${inputName}]`
+      );
+      if (!input) {
+        return;
+      }
+      const messages = data.errors[inputName];
+      const errorHTML = `<p class="errors">${messages.join("<br>")}</p>`;
+      if (input.matches('[type="file"]')) {
+        input.nextElementSibling.insertAdjacentHTML("afterend", errorHTML);
+      } else {
+        input.insertAdjacentHTML("afterend", errorHTML);
+      }
+      input.classList.add("has-error");
+    });
+  },
+
+  clearErrorMessages(form) {
+    form.querySelectorAll(".errors").forEach(error => {
+      error.parentNode.removeChild(error);
+    });
+    form
+      .querySelectorAll(".has-error")
+      .forEach(el => el.classList.remove("has-error"));
   },
 
   updateContentBlocks(content) {
@@ -196,6 +213,7 @@ const FormHandler = {
         }
       });
     });
+    CustomEvents.dispatch("DOMContentUpdated");
   },
 
   formHasNoInputs(form) {

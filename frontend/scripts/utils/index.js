@@ -1,5 +1,6 @@
 import InputBinding from "./input-binding";
 import debounce from "./debounce";
+import CustomEvents from "./custom-events";
 
 class Utils {
   constructor() {
@@ -22,4 +23,4 @@ class Utils {
 const utils = new Utils();
 Object.freeze(utils);
 
-export { Utils, debounce };
+export { Utils, debounce, CustomEvents };
