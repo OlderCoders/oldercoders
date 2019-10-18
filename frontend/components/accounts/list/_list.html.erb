@@ -1,0 +1,13 @@
+<% if accounts.any? %>
+  <section class="accounts-list">
+    <div class="accounts-list--page" data-page="<%= pagy.page %>">
+      <% accounts.each do |account| %>
+        <%=
+          Rails.cache.fetch "#{account.cache_key}" do
+            component 'accounts/list/item', account: account
+          end
+        %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

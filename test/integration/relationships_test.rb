@@ -8,21 +8,21 @@ class RelationshipsTest < ActionDispatch::IntegrationTest
   end
 
   test "following page as a logged out user" do
-    get following_path(@account)
+    get following_path(username: @account.username)
     assert_not @account.following.empty?
     assert_match @account.following.count.to_s, response.body
     @account.following.each do |user|
-      assert_select "a[href=?]", profile_url(username: user.username)
+      assert_select "a[href=?]", account_url(username: user.username)
     end
     assert_select ".pagination.pagination--incremental"
   end
 
   test "followers page as a logged out user" do
-    get followers_path(@account)
+    get followers_path(username: @account.username)
     assert_not @account.followers.empty?
     assert_match @account.followers.count.to_s, response.body
     @account.followers.each do |user|
-      assert_select "a[href=?]", profile_url(username: user.username)
+      assert_select "a[href=?]", account_url(username: user.username)
     end
     assert_select ".pagination.pagination--incremental"
   end

@@ -1,0 +1,12 @@
+<% return nil unless account %>
+
+<article class="account-preview">
+  <div class="account-preview--details">
+    <h3 class="account-preview--name">
+      <a href="<%= account_url(account.username) %>">
+        <span class="name"><%= account.name %></span>
+        <em class="username"><%= formatted_username account %></em>
+      </a>
+    </h3>
+  </div>
+</article>

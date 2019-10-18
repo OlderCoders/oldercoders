@@ -4,6 +4,5 @@
   <%= following_with_count @account %>
 </h1>
 
-<%= @accounts  %>
-
+<%= c 'accounts/list', accounts: @accounts, pagy: @pagy %>
 <%= c 'global/pagination/incremental', pagy: @pagy %>
