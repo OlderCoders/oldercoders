@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   scope '/account' do
+    get '/', to: redirect('/')
+
     devise_for :accounts,
       path: '/',
       path_names: {
