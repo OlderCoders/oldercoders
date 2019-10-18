@@ -13,6 +13,30 @@ en:
         success: Great!<br>With your username now set, take a moment to set up your profile.
 
     relationships:
+      stats:
+        follower_count:
+          zero:  <strong class="stat">0</strong> Followers
+          one:   <strong class="stat">%{human_count}</strong> Follower
+          other: <strong class="stat">%{human_count}</strong> Followers
+        follower_count_humane:
+          zero:  Followers <strong class="stat">0</strong>
+          one:   Followers <strong class="stat">%{human_count}</strong>
+          other: Followers <strong class="stat">%{human_count}</strong>
+        following_count:
+          zero:  <strong class="stat">0</strong> Following
+          one:   <strong class="stat">%{human_count}</strong> Following
+          other: <strong class="stat">%{human_count}</strong> Following
+        following_count_humane:
+          zero:  Following <strong class="stat">0</strong>
+          one:   Following <strong class="stat">%{human_count}</strong>
+          other: Following <strong class="stat">%{human_count}</strong>
+
+      following:
+        page_title: People following %{name} (@%{username})
+
+      followers:
+        page_title: People %{name} (@%{username}) follows
+
       status:
         self: That's you!
         follow: Follow

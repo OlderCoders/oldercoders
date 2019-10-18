@@ -2,31 +2,31 @@ class Accounts::RelationshipsController < ApplicationController
 
   include RequestedAccount
 
-  before_action :logged_in_account
+  before_action :logged_in_account, only: %i[create destroy]
 
   # GET
   # account_following
   #
   # The view for seeing who a account is following
-  # def following
-  #   @accounts = @account.following.page(params[:page])
-  #   respond_to do |format|
-  #     format.json.ujs  { render 'index', layout: false }
-  #     format.html      { render 'following' }
-  #   end
-  # end
+  def following
+    @pagy, @accounts = pagy_countless @account.following, link_extra: 'data-remote="true"'
+    respond_to do |format|
+      format.json.ujs  { render 'index', layout: false }
+      format.html      { render 'following' }
+    end
+  end
 
   # GET
   # account_followers
   #
   # The view for seeing a list of a account's followers
-  # def followers
-  #   @accounts = @account.followers.page(params[:page])
-  #   respond_to do |format|
-  #     format.json.ujs  { render 'index', layout: false }
-  #     format.html      { render 'followers' }
-  #   end
-  # end
+  def followers
+    @pagy, @accounts = pagy_countless @account.followers, link_extra: 'data-remote="true"'
+    respond_to do |format|
+      format.json.ujs  { render 'index', layout: false }
+      format.html      { render 'followers' }
+    end
+  end
 
   # POST
   # follow

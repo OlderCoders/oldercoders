@@ -19,6 +19,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.4.1', require: false
 gem 'devise', '~> 4.7'
 gem 'name_of_person', '~> 1.1'
+gem 'pagy', '~> 3.5'
 gem 'sanitize', '~> 5.0'
 gem 'translate_enum', '~> 0.1.3'
 gem 'validate_url', '~> 1.0'

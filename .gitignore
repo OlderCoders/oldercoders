@@ -27,6 +27,7 @@ erd.pdf
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+/vendor/bundle
 /public/packs
 /public/packs-test
 /node_modules

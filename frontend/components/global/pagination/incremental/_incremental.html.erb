@@ -1,0 +1,9 @@
+<div class="pagination pagination--incremental">
+  <% if pagy.page > pagy.pages %>
+    <%== pagy_next_link pagy, t('global.pagination.load_more'), class: 'pagination--load-more' %>
+  <% else %>
+    <span class="pagination--end">
+      <%= t('global.pagination.no_more') %>
+    </span>
+  <% end %>
+</div>

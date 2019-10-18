@@ -1,0 +1,9 @@
+<%= content_for :title, t('.page_title', name: @account.name, username: @account.username) %>
+
+<h1>
+  <%= following_with_count @account %>
+</h1>
+
+<%= @accounts  %>
+
+<%= c 'global/pagination/incremental', pagy: @pagy %>
