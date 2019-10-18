@@ -1,17 +1,16 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  title: MyString
-  slug: MyString
-  type: 
-  content: MyText
-  comment_count: 1
+post_1:
+  account: michael
+  title: Here's a post title
+  slug: heres-a-post-title
+  type: Post
+  comment_count: 5
   vote_total: 1
 
-two:
-  title: MyString
-  slug: MyString
-  type: 
-  content: MyText
-  comment_count: 1
-  vote_total: 1
+post_2:
+  account: luke
+  title: Another Post Title
+  slug: another-post-title
+  type: Post
+  comment_count: 3
+  vote_total: -1
+

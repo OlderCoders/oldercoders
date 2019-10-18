@@ -1,4 +1,11 @@
-# one:
-#   record: name_of_fixture (ClassOfFixture)
-#   name: content
-#   body: <p>In a <i>million</i> stars!</p>
+post_1_text:
+  record_type: Entry
+  name: content
+  body: <p>In a <i>million</i> stars!</p>
+  record: post_1
+
+post_2_text:
+  record_type: Entry
+  name: content
+  body: <p>In a <i>million</i> stars!</p>
+  record: post_2

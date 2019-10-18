@@ -97,11 +97,10 @@ ActiveRecord::Schema.define(version: 2019_10_18_193441) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.bigint "author_id", null: false
+    t.bigint "account_id", null: false
     t.string "type", null: false
     t.string "title", null: false
     t.string "slug"
-    t.text "content"
     t.integer "comment_count", default: 0
     t.integer "vote_total", default: 0
     t.datetime "created_at", precision: 6, null: false
