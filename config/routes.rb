@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       }
     scope module: :accounts do
       resource :username, only: %i[new update], path_names: { edit: '/' }
+      resource :profile, only: %i[edit update], path_names: { edit: '/' }
     end
   end
 
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
     resource :account, only: %i[show edit update destroy], path: '/'
 
     scope module: :accounts do
-      resource :profile, only: %i[edit update], path_names: { edit: '/' }
       resource :relationship, only: %i[create destroy]
       get 'following', to: 'relationships#following'
       get 'followers', to: 'relationships#followers'
