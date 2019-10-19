@@ -1,4 +1,4 @@
-class Relationship < ApplicationRecord
+class Account::Relationship < ApplicationRecord
   # Define relationships
   belongs_to :follower, class_name: '::Account', inverse_of: :active_relationships
   belongs_to :followee, class_name: '::Account', inverse_of: :passive_relationships, touch: true

@@ -3,13 +3,13 @@ module Friendable
 
   included do
     has_many :active_relationships,
-             class_name: 'Relationship',
+             class_name: 'Account::Relationship',
              inverse_of: :follower,
              foreign_key: 'follower_id',
              dependent: :destroy
 
     has_many :passive_relationships,
-             class_name: 'Relationship',
+             class_name: 'Account::Relationship',
              inverse_of: :followee,
              foreign_key: 'followee_id',
              dependent: :destroy
@@ -51,8 +51,8 @@ module Friendable
       %(
         SELECT     accounts.id
         FROM       accounts
-        INNER JOIN relationships followers ON accounts.id = followers.follower_id
-        INNER JOIN relationships followed ON accounts.id = followed.followee_id
+        INNER JOIN account_relationships followers ON accounts.id = followers.follower_id
+        INNER JOIN account_relationships followed ON accounts.id = followed.followee_id
         WHERE      followers.followee_id = #{account_id} AND followed.follower_id = #{account_id}
         ORDER BY   followed.updated_at DESC;
       ).squish
