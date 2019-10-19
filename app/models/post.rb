@@ -1,3 +1,0 @@
-class Post < Entry
-
-end
