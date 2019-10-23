@@ -1,0 +1,15 @@
+<article class="entry">
+  <header class="entry--header">
+    <h1>
+      <%= @entry.title %>
+    </h1>
+    <p class="entry--byline">
+      By <%= @entry.author.name %>
+    </p>
+    <p>
+      <%= @entry.comment_count %> Comments
+    </p>
+  </header>
+  <div class="entry--body">
+    <%= @entry.content %>
+  </div>

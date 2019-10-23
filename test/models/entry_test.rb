@@ -26,12 +26,12 @@ class EntryTest < ActiveSupport::TestCase
     assert_not @post.valid?
   end
 
-  test "entry should be associated with an account" do
-    assert @post.account.is_a? Account
+  test "entry should have an author, which is an Account" do
+    assert @post.author.is_a? Account
   end
 
-  test "an entry account is required" do
-    @post.account = nil
+  test "an entry author is required" do
+    @post.author = nil
     assert_not @post.valid?
   end
 

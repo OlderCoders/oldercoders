@@ -1,0 +1,8 @@
+<h1>Entries</h1>
+<% if !@entries.blank? %>
+  <% for entry in @entries %>
+    <h2>
+      <%= link_to entry.title, entry_path(entry.type, entry) %>
+    </h2>
+  <% end %>
+<% end %>

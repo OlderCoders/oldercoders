@@ -1,0 +1,18 @@
+<%= form_with(model: @entry) do |f| %>
+  <fieldset>
+    <legend>Create a new <%= @entry.class.name %></legend>
+    <div class="input-field">
+      <%= f.label :title %>
+      <%= f.text_field :title, maxlength: 255, required: true %>
+    </div>
+
+    <div class="input-field">
+      <%= f.label :content %>
+      <%= f.rich_text_area :content %>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.button "Post", class: 'btn--primary' %>
+  </div>
+<% end %>

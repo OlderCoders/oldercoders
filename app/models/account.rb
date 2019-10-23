@@ -13,7 +13,7 @@ class Account < ApplicationRecord
   has_person_name
 
   has_one :profile, class_name: 'Account::Profile', inverse_of: :account, foreign_key: 'account_id', dependent: :destroy
-  has_many :posts, class_name: 'Entry::Post', inverse_of: :account, foreign_key: 'account_id', dependent: :destroy
+  has_many :posts, class_name: 'Post', inverse_of: :account, foreign_key: 'account_id', dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable

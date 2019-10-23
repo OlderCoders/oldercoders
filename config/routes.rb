@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/posts' do
+    resources :posts, controller: 'entries', type: 'Post', param: :slug, path: '/'
+  end
+
   scope '/:username' do
     resource :account, only: %i[show edit update destroy], path: '/'
 

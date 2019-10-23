@@ -2,7 +2,7 @@ post_1:
   account: michael
   title: Here's a post title
   slug: heres-a-post-title
-  type: Entry::Post
+  type: Post
   comment_count: 5
   vote_total: 1
 
@@ -10,7 +10,7 @@ post_2:
   account: luke
   title: Another Post Title
   slug: another-post-title
-  type: Entry::Post
+  type: Post
   comment_count: 3
   vote_total: -1
 

@@ -1,5 +1,8 @@
+require "sti_preload"
+
 class Entry < ApplicationRecord
 
+  include StiPreload
   include Hashid::Rails
 
   extend FriendlyId
@@ -7,11 +10,18 @@ class Entry < ApplicationRecord
 
   has_rich_text :content
 
-  belongs_to :account, class_name: "Account", foreign_key: "account_id"
+  belongs_to :author, class_name: "Account", foreign_key: "account_id"
   after_create :regenerate_slug
 
   validates :title, presence: true
   validates :slug, uniqueness: true
+
+  scope :posts, -> { where(type: 'Post') }
+  scope :with_author, -> { includes(:author) }
+
+  def self.types
+    Entry.descendants.map(&:name)
+  end
 
   private
 

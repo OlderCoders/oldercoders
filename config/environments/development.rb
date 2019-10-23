@@ -52,4 +52,5 @@ Rails.application.configure do
 
   # Set host for Action Mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 5000 }
+
 end
