@@ -8,7 +8,6 @@ class EntryTest < ActiveSupport::TestCase
   end
 
   test "post should be valid" do
-    byebug
     assert @post.valid?
   end
 

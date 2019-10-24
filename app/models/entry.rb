@@ -43,7 +43,6 @@ class Entry < ApplicationRecord
     end
 
     def build_dependencies
-      byebug
       content = self.build_content unless self.persisted?
     end
 
