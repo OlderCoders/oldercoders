@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  record: post_1 (Post)
+  body: <p>How now <strong>brown</strong> cow</p>
+  body_raw: How now **brown** cow
+
+two:
+  record: post_2 (Post)
+  body: <p>The quick brown fox <em>jumped</em> over the lazy dog.</p>
+  body_raw: The quick brown fox *jumped* over the lazy dog.

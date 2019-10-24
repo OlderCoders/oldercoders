@@ -8,13 +8,19 @@ class Entry < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  has_rich_text :content
-
-  belongs_to :author, class_name: "Account", foreign_key: "account_id"
-  after_create :regenerate_slug
+  belongs_to :author, class_name: 'Account', foreign_key: 'account_id'
+  has_one :content, class_name: 'RichText', as: :record, dependent: :destroy
 
   validates :title, presence: true
   validates :slug, uniqueness: true
+
+  validates_presence_of :content
+  validates_associated :content
+
+  delegate :body, :body=, :body_raw, :body_raw=, to: :content
+
+  after_initialize :build_dependencies
+  after_create :regenerate_slug
 
   scope :posts, -> { where(type: 'Post') }
   scope :with_author, -> { includes(:author) }
@@ -35,4 +41,10 @@ class Entry < ApplicationRecord
       update_column :slug, nil
       save!
     end
+
+    def build_dependencies
+      byebug
+      content = self.build_content unless self.persisted?
+    end
+
 end

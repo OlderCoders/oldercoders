@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class Account::ProfileTest < ActiveSupport::TestCase
+class ProfileTest < ActiveSupport::TestCase
 
   def setup
-    @profile = account_profiles(:michael)
+    @profile = profiles(:michael)
     @social_url_props = %i[
       facebook_url
       linkedin_url

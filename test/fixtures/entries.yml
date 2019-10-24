@@ -1,5 +1,5 @@
 post_1:
-  account: michael
+  author: michael
   title: Here's a post title
   slug: heres-a-post-title
   type: Post
@@ -7,7 +7,7 @@ post_1:
   vote_total: 1
 
 post_2:
-  account: luke
+  author: luke
   title: Another Post Title
   slug: another-post-title
   type: Post

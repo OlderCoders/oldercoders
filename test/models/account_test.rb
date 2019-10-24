@@ -247,13 +247,13 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "Creating an Account should create a Profile" do
-    assert_difference 'Account::Profile.count', 1 do
+    assert_difference 'Profile.count', 1 do
       Account.create first_name: 'Luke', last_name: 'Skywalker', password: 'rebelyellers', email: 'luke@rebelalliance.org'
     end
   end
 
   test "Associated Profile should be destroyed when destroying Account" do
-    assert_difference 'Account::Profile.count', @accounts.count * -1 do
+    assert_difference 'Profile.count', @accounts.count * -1 do
       @accounts.each(&:destroy)
     end
   end

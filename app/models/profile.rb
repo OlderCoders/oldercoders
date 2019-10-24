@@ -1,4 +1,4 @@
-class Account::Profile < ApplicationRecord
+class Profile < ApplicationRecord
   def self.table_name_prefix
     'account_'
   end

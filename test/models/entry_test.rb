@@ -8,6 +8,7 @@ class EntryTest < ActiveSupport::TestCase
   end
 
   test "post should be valid" do
+    byebug
     assert @post.valid?
   end
 
@@ -39,14 +40,14 @@ class EntryTest < ActiveSupport::TestCase
     title = "Post Title"
     content = "Post Content"
 
-    new_post_1 = @account.posts.create(title: title, content: content)
-    new_post_2 = @account.posts.create(title: title, content: content)
+    new_post_1 = @account.posts.create(title: title, body_raw: content)
+    new_post_2 = @account.posts.create(title: title, body_raw: content)
 
     assert_not_equal new_post_1.slug, new_post_2.slug
   end
 
-  test "Entry content is an ActionText::RichText object" do
-    assert @post.content.is_a? ActionText::RichText
+  test "Entry content is an RichText object" do
+    assert @post.content.is_a? RichText
   end
 
 end

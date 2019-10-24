@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_122427) do
+ActiveRecord::Schema.define(version: 2019_10_23_141251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,37 +75,6 @@ ActiveRecord::Schema.define(version: 2019_10_19_122427) do
     t.index ["username"], name: "index_accounts_on_username", unique: true
   end
 
-  create_table "action_text_rich_texts", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "body"
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
-  end
-
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
   create_table "entries", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "type", null: false
@@ -119,6 +88,15 @@ ActiveRecord::Schema.define(version: 2019_10_19_122427) do
     t.index ["vote_total"], name: "index_entries_on_vote_total"
   end
 
+  create_table "rich_texts", force: :cascade do |t|
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.text "body_raw"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id"], name: "index_rich_texts_uniqueness", unique: true
+  end
+
   add_foreign_key "account_profiles", "accounts", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end

@@ -3,13 +3,13 @@ module Friendable
 
   included do
     has_many :active_relationships,
-             class_name: 'Account::Relationship',
+             class_name: 'Relationship',
              inverse_of: :follower,
              foreign_key: 'follower_id',
              dependent: :destroy
 
     has_many :passive_relationships,
-             class_name: 'Account::Relationship',
+             class_name: 'Relationship',
              inverse_of: :followee,
              foreign_key: 'followee_id',
              dependent: :destroy

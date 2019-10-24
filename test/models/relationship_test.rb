@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class Account::RelationshipTest < ActiveSupport::TestCase
+class RelationshipTest < ActiveSupport::TestCase
 
   def setup
     @account_michael = accounts(:michael)
     @account_hugh    = accounts(:hugh)
     @account_igor    = accounts(:igor)
-    @relationship    = Account::Relationship.new(follower_id: @account_michael.id,
+    @relationship    = Relationship.new(follower_id: @account_michael.id,
                                                  followee_id: @account_hugh.id)
   end
 
