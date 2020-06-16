@@ -22,7 +22,7 @@ gem 'friendly_id', '~> 5.3'
 gem 'hashid-rails', '~> 1.2'
 gem 'name_of_person', '~> 1.1'
 gem 'pagy', '~> 3.5'
-gem 'sanitize', '~> 5.0'
+gem 'sanitize', '~> 5.2'
 gem 'translate_enum', '~> 0.1.3'
 gem 'validate_url', '~> 1.0'
 
